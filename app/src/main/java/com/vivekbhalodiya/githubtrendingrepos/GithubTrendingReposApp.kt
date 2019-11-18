@@ -6,13 +6,21 @@
 
 package com.vivekbhalodiya.githubtrendingrepos
 
-import android.app.Application
+import com.vivekbhalodiya.githubtrendingrepos.injection.component.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 import timber.log.Timber
 
 /**
  * Created by Vivek Patel on 2019-11-18.
  */
-class GithubTrendingReposApp : Application() {
+class GithubTrendingReposApp : DaggerApplication() {
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerAppComponent
+            .factory()
+            .create(applicationContext)
+    }
+
     override fun onCreate() {
         super.onCreate()
         setupTimber()

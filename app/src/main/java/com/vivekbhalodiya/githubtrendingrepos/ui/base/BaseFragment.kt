@@ -14,6 +14,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
+import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 
 /**
@@ -33,6 +34,9 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel> : DaggerFragmen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        AndroidSupportInjection.inject(this)
+
         setViewModel()
     }
 

@@ -38,6 +38,7 @@ ext {
     archRoomVersion = "2.2.1"
     archLifecycleVersion = "2.1.0"
     retrofitVersion = "2.6.2"
+    retrofitGsonFactoryVersion = "2.6.1"
     rxJavaAdapterVersion = "2.3.0"
     rxAndroidVersion = "2.1.1"
     rxJava2Version = "2.1.0"

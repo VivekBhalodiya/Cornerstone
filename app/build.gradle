@@ -21,7 +21,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            buildConfigField 'String', 'URL', '"https://github-trending-api.now.sh/"'
+        }
         release {
+            buildConfigField 'String', 'URL', '"https://github-trending-api.now.sh/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -56,6 +60,7 @@ dependencies {
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
     implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.rxJavaAdapterVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitGsonFactoryVersion}"
 
     //RxJava RxAndroid
     implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJava2Version}"

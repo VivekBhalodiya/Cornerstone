@@ -6,14 +6,17 @@
 
 package com.vivekbhalodiya.githubtrendingrepos.ui.home
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.vivekbhalodiya.githubtrendingrepos.R
+import com.vivekbhalodiya.githubtrendingrepos.databinding.ActivityHomeBinding
+import com.vivekbhalodiya.githubtrendingrepos.ui.base.BaseActivity
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
+    override fun getViewModelClass() = HomeViewModel::class.java
+
+    override fun layoutId() = R.layout.activity_home
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
     }
 }

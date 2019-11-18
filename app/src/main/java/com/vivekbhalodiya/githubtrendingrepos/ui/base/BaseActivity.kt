@@ -11,14 +11,20 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
-import dagger.android.DaggerActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
+import dagger.android.support.DaggerAppCompatActivity
+import javax.inject.Inject
 
 /**
  * Created by Vivek Patel on 2019-11-18.
  */
-abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerActivity() {
+abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerAppCompatActivity() {
     lateinit var viewModel: VM
     protected lateinit var binding: B
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @LayoutRes
     protected abstract fun layoutId(): Int
@@ -33,6 +39,6 @@ abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerActivit
 
     private fun bindContentView(layoutId: Int) {
         binding = DataBindingUtil.setContentView(this, layoutId)
-        //viewModel = ViewModelProviders.of(this, viewModelFactory)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass())
     }
 }

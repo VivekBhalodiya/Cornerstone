@@ -8,6 +8,7 @@ package com.vivekbhalodiya.githubtrendingrepos.injection.component
 
 import android.content.Context
 import com.vivekbhalodiya.githubtrendingrepos.GithubTrendingReposApp
+import com.vivekbhalodiya.githubtrendingrepos.injection.module.ActivityBindingModule
 import com.vivekbhalodiya.githubtrendingrepos.injection.module.AppModule
 import com.vivekbhalodiya.githubtrendingrepos.injection.module.ViewModelFactoryModule
 import dagger.BindsInstance
@@ -18,7 +19,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 /**
  * Created by Vivek Patel on 2019-11-19.
  */
-@Component(modules = [AndroidSupportInjectionModule::class, AppModule::class, ViewModelFactoryModule::class])
+@Component(modules = [AndroidSupportInjectionModule::class, AppModule::class, ViewModelFactoryModule::class, ActivityBindingModule::class] )
 interface AppComponent : AndroidInjector<GithubTrendingReposApp> {
 
     @Component.Factory

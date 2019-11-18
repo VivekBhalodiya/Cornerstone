@@ -7,9 +7,10 @@
 package com.vivekbhalodiya.githubtrendingrepos.ui.home
 
 import com.vivekbhalodiya.githubtrendingrepos.ui.base.BaseViewModel
+import javax.inject.Inject
 
 /**
  * Created by Vivek Patel on 2019-11-19.
  */
-class HomeViewModel: BaseViewModel() {
+class HomeViewModel @Inject constructor(): BaseViewModel() {
 }

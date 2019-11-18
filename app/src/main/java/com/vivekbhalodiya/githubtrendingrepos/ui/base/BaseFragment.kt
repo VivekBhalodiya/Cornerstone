@@ -14,6 +14,7 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProviders
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.DaggerFragment
 
@@ -45,7 +46,7 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel> : DaggerFragmen
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater,layoutId(), container, false)
+        binding = DataBindingUtil.inflate(inflater, layoutId(), container, false)
         return binding.root
     }
 
@@ -54,7 +55,7 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel> : DaggerFragmen
      * between activity and fragment
      */
     private fun setViewModel() {
-        /*viewModel = if (useActivityScopeForViewModel) {
+        viewModel = if (useActivityScopeForViewModel) {
             ViewModelProviders.of(
                 activity as BaseActivity<*, *>, (activity as BaseActivity<*, *>).viewModelFactory
             )
@@ -62,6 +63,6 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel> : DaggerFragmen
         } else {
             ViewModelProviders.of(this, (activity as BaseActivity<*, *>).viewModelFactory)
                 .get(getViewModelClass())
-        }*/
+        }
     }
 }

@@ -17,8 +17,8 @@ import dagger.android.DaggerActivity
  * Created by Vivek Patel on 2019-11-18.
  */
 abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerActivity() {
-    protected lateinit var binding: B
     lateinit var viewModel: VM
+    protected lateinit var binding: B
 
     @LayoutRes
     protected abstract fun layoutId(): Int

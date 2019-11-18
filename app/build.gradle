@@ -9,6 +9,9 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     buildToolsVersion "29.0.2"
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         applicationId "com.vivekbhalodiya.githubtrendingrepos"
         minSdkVersion rootProject.ext.minSDKVersion

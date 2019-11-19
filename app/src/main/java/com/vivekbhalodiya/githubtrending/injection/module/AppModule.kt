@@ -7,6 +7,7 @@
 package com.vivekbhalodiya.githubtrending.injection.module
 
 import android.content.Context
+import android.preference.PreferenceManager
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -15,6 +16,7 @@ import com.vivekbhalodiya.githubtrending.data.source.local.Database
 import com.vivekbhalodiya.githubtrending.data.source.local.GithubTrendingDao
 import com.vivekbhalodiya.githubtrending.injection.qualifiers.ApplicationContext
 import com.vivekbhalodiya.githubtrending.utils.AppConstants
+import com.vivekbhalodiya.githubtrending.utils.PrefsUtils
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -58,4 +60,10 @@ class AppModule {
     fun provideTrendingRepositoriesDao(
         database: Database
     ): GithubTrendingDao = database.trendingRepositoriesDao()
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: Context): PrefsUtils {
+        return  PrefsUtils(PreferenceManager.getDefaultSharedPreferences(context))
+    }
 }

@@ -8,6 +8,8 @@ package com.vivekbhalodiya.githubtrending.injection.module
 
 import androidx.fragment.app.FragmentManager
 import com.vivekbhalodiya.githubtrending.injection.scope.ActivityScope
+import com.vivekbhalodiya.githubtrending.ui.base.navigator.ActivityNavigator
+import com.vivekbhalodiya.githubtrending.ui.base.navigator.Navigator
 import com.vivekbhalodiya.githubtrending.ui.home.HomeActivity
 import com.vivekbhalodiya.githubtrending.ui.home.HomeActivityModule
 import dagger.Binds
@@ -47,4 +49,10 @@ open class BaseActivityModule {
     @ActivityScope
     fun provideFragmentManager(activity: DaggerAppCompatActivity): FragmentManager =
         activity.supportFragmentManager
+
+    @Provides
+    @ActivityScope
+    internal fun provideNavigator(activity: DaggerAppCompatActivity): Navigator {
+        return ActivityNavigator(activity)
+    }
 }

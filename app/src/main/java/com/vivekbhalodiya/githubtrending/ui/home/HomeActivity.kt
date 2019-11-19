@@ -10,6 +10,7 @@ import android.os.Bundle
 import com.vivekbhalodiya.githubtrending.R
 import com.vivekbhalodiya.githubtrending.databinding.ActivityHomeBinding
 import com.vivekbhalodiya.githubtrending.ui.base.BaseActivity
+import com.vivekbhalodiya.githubtrending.ui.trending.TrendingReposFragment
 
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
     override fun getViewModelClass() = HomeViewModel::class.java
@@ -18,6 +19,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.test()
+        getActivityNavigator().replaceFragment(R.id.fragment_container_home, TrendingReposFragment())
     }
 }

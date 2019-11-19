@@ -10,10 +10,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.vivekbhalodiya.githubtrending.data.GithubTrendingResponse
-import dagger.multibindings.IntoSet
+import com.vivekbhalodiya.githubtrending.data.model.GithubTrendingResponse
 import io.reactivex.Observable
-import io.reactivex.Single
 
 /**
  * Created by Vivek Patel on 2019-11-19.

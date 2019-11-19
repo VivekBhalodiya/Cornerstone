@@ -4,7 +4,7 @@
  * Last modified 19/11/19 4:23 PM
  */
 
-package com.vivekbhalodiya.githubtrending.data
+package com.vivekbhalodiya.githubtrending.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

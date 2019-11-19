@@ -8,7 +8,7 @@ package com.vivekbhalodiya.githubtrending.data.source.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.vivekbhalodiya.githubtrending.data.GithubTrendingResponse
+import com.vivekbhalodiya.githubtrending.data.model.GithubTrendingResponse
 
 /**
  * Created by Vivek Patel on 2019-11-19.

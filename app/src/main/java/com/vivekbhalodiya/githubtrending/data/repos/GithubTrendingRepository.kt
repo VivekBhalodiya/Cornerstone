@@ -6,7 +6,7 @@
 
 package com.vivekbhalodiya.githubtrending.data.repos
 
-import com.vivekbhalodiya.githubtrending.data.GithubTrendingResponse
+import com.vivekbhalodiya.githubtrending.data.model.GithubTrendingResponse
 import com.vivekbhalodiya.githubtrending.data.source.local.GithubTrendingDao
 import com.vivekbhalodiya.githubtrending.data.source.remote.ApiInterface
 import com.vivekbhalodiya.githubtrending.utils.NetworkUtils

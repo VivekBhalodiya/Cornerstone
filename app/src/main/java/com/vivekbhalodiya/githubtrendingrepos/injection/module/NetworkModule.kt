@@ -27,18 +27,13 @@ import javax.inject.Singleton
 
 @Module
 class NetworkModule {
-    companion object {
-        private const val SOCKET_READ_WRITE_TIMEOUT_IN_SECONDS: Long = 30
-        private const val SOCKET_TIMEOUT_IN_MINUTES: Long = 1
-    }
-
     @Provides
     @Singleton
-    internal fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
+    internal fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            .connectTimeout(SOCKET_TIMEOUT_IN_MINUTES, TimeUnit.MINUTES)
-            .readTimeout(SOCKET_READ_WRITE_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
-            .writeTimeout(SOCKET_READ_WRITE_TIMEOUT_IN_SECONDS, TimeUnit.SECONDS)
+            .connectTimeout(1, TimeUnit.MINUTES)
+            .readTimeout(1, TimeUnit.MINUTES)
+            .writeTimeout(1, TimeUnit.MINUTES)
             .build()
     }
 

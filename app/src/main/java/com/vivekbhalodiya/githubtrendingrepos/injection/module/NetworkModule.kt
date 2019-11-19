@@ -8,6 +8,7 @@ package com.vivekbhalodiya.githubtrendingrepos.injection.module
 
 import android.content.Context
 import com.vivekbhalodiya.githubtrendingrepos.BuildConfig
+import com.vivekbhalodiya.githubtrendingrepos.data.source.remote.ApiInterface
 import com.vivekbhalodiya.githubtrendingrepos.injection.qualifiers.ApplicationContext
 import com.vivekbhalodiya.githubtrendingrepos.utils.NetworkUtils
 import com.vivekbhalodiya.githubtrendingrepos.utils.OnSubscribeBroadcastReceiver
@@ -60,4 +61,9 @@ class NetworkModule {
     ): NetworkUtils {
         return NetworkUtils(context, onSubscribeBroadcastReceiver)
     }
+
+    @Provides
+    @Singleton
+    fun providesApiInterface(retrofit: Retrofit): ApiInterface = retrofit.create(
+        ApiInterface::class.java)
 }

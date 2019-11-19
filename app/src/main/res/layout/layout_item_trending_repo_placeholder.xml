@@ -6,35 +6,41 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/dimen_21dp"
+    android:paddingBottom="@dimen/dimen_21dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal">
 
-  <View
-      android:id="@+id/thumbnail"
+  <androidx.cardview.widget.CardView
       android:layout_width="@dimen/dimen_32dp"
       android:layout_height="@dimen/dimen_32dp"
       android:layout_marginLeft="@dimen/dimen_16dp"
-      android:layout_marginTop="@dimen/dimen_21dp"
       android:layout_marginRight="@dimen/dimen_16dp"
-      android:background="@color/background" />
+      app:cardCornerRadius="@dimen/dimen_260dp"
+      app:cardElevation="0dp"
+      app:cardBackgroundColor="@color/background"/>
 
   <LinearLayout
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="@dimen/dimen_21dp"
       android:layout_marginEnd="@dimen/dimen_36dp"
       android:orientation="vertical">
 
-    <View
+    <androidx.cardview.widget.CardView
         android:layout_width="@dimen/dimen_100dp"
         android:layout_height="@dimen/dimen_8dp"
-        android:background="@color/background" />
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/background" />
 
-    <View
+    <androidx.cardview.widget.CardView
         android:layout_width="@dimen/dimen_260dp"
         android:layout_height="@dimen/dimen_8dp"
         android:layout_marginTop="@dimen/dimen_16dp"
-        android:background="@color/background" />
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/background" />
   </LinearLayout>
 
 </LinearLayout>

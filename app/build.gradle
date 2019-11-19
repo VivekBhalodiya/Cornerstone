@@ -41,6 +41,7 @@ dependencies {
     // For control over item selection of both touch and mouse driven selection
     implementation "androidx.recyclerview:recyclerview-selection:${rootProject.ext.recyclerviewVersion}"
     implementation "androidx.recyclerview:recyclerview:${rootProject.ext.recyclerviewVersion}"
+    implementation "androidx.cardview:cardview:${rootProject.ext.recyclerviewVersion}"
 
     //Dagger2
     implementation "com.google.dagger:dagger-android:${rootProject.ext.dagger2Version}"

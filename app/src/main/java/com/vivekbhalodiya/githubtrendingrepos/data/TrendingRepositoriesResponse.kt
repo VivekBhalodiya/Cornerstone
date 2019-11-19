@@ -8,6 +8,7 @@ package com.vivekbhalodiya.githubtrendingrepos.data
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -18,6 +19,10 @@ import com.google.gson.annotations.SerializedName
     tableName = "trendingrepos"
 )
 data class TrendingRepositoriesResponse(
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    val id: Long,
+
     @SerializedName("author")
     @ColumnInfo(name = "author")
     val author: String = "",

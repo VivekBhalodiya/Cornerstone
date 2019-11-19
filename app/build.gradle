@@ -38,6 +38,9 @@ dependencies {
     implementation "androidx.appcompat:appcompat:${rootProject.ext.appCompatVersion}"
     implementation "androidx.core:core-ktx:${rootProject.ext.coreKTXVersion}"
     implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintLayoutVersion}"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:${rootProject.ext.recyclerviewVersion}"
+    implementation "androidx.recyclerview:recyclerview:${rootProject.ext.recyclerviewVersion}"
 
     //Dagger2
     implementation "com.google.dagger:dagger-android:${rootProject.ext.dagger2Version}"

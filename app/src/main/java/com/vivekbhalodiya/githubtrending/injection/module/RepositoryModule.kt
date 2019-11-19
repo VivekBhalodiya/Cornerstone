@@ -10,6 +10,7 @@ import com.vivekbhalodiya.githubtrending.data.repos.GithubTrendingRepository
 import com.vivekbhalodiya.githubtrending.data.source.local.GithubTrendingDao
 import com.vivekbhalodiya.githubtrending.data.source.remote.ApiInterface
 import com.vivekbhalodiya.githubtrending.utils.NetworkUtils
+import com.vivekbhalodiya.githubtrending.utils.PrefsUtils
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -26,6 +27,7 @@ class RepositoryModule {
     internal fun provideGithubTrendingRepository(
         apiInterface: ApiInterface,
         githubTrendingDao: GithubTrendingDao,
-        networkUtils: NetworkUtils
-    ) = GithubTrendingRepository(apiInterface, githubTrendingDao, networkUtils)
+        networkUtils: NetworkUtils,
+        prefsUtils: PrefsUtils
+    ) = GithubTrendingRepository(apiInterface, githubTrendingDao, networkUtils,prefsUtils)
 }

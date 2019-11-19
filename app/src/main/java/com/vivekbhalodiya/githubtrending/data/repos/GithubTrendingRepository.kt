@@ -9,26 +9,34 @@ package com.vivekbhalodiya.githubtrending.data.repos
 import com.vivekbhalodiya.githubtrending.data.model.GithubTrendingResponse
 import com.vivekbhalodiya.githubtrending.data.source.local.GithubTrendingDao
 import com.vivekbhalodiya.githubtrending.data.source.remote.ApiInterface
+import com.vivekbhalodiya.githubtrending.utils.AppConstants.Companion.TWO_HOURS_IN_MILLISECONDS
 import com.vivekbhalodiya.githubtrending.utils.NetworkUtils
+import com.vivekbhalodiya.githubtrending.utils.PrefsUtils
 import io.reactivex.Observable
+import io.reactivex.Single
+import retrofit2.Response
 import timber.log.Timber
 import javax.inject.Inject
+import kotlin.Exception
 
 /**
  * Created by Vivek Patel on 2019-11-19.
  */
 class GithubTrendingRepository @Inject constructor(
-    val apiInterface: ApiInterface,
-    val githubTrendingDao: GithubTrendingDao,
-    val networkUtils: NetworkUtils
+    private val apiInterface: ApiInterface,
+    private val githubTrendingDao: GithubTrendingDao,
+    private val networkUtils: NetworkUtils,
+    private val prefsUtils: PrefsUtils
 ) {
-    fun getGihubTrendingRepos(): Observable<List<GithubTrendingResponse>> {
+    fun getGithubTrendingRepos(): Observable<List<GithubTrendingResponse>> {
         var observablesFromApi: Observable<List<GithubTrendingResponse>>? = null
+        var observableFromDb: Observable<List<GithubTrendingResponse>>? = null
 
         if (networkUtils.isConnected()) {
             observablesFromApi = getGithubTrendingReposFromApi()
+        } else if (isCacheExpired().not()) {
+            observableFromDb = getGithubTrendingReposFromDb()
         }
-        val observableFromDb = getGithubTrendingReposFromDb()
 
         return if (networkUtils.isConnected()) {
             Observable.concatArrayEager(
@@ -36,29 +44,54 @@ class GithubTrendingRepository @Inject constructor(
                 observableFromDb
             )
         } else {
-            observableFromDb
+            observableFromDb!!
         }
     }
 
     private fun getGithubTrendingReposFromDb(): Observable<List<GithubTrendingResponse>> {
         return githubTrendingDao.queryGithubTrendingRepos()
-            .doOnNext {
-                Timber.d("OfflineTrendingRepos: %s", it)
-            }
     }
 
     private fun getGithubTrendingReposFromApi(): Observable<List<GithubTrendingResponse>> {
         return apiInterface.getTrendingRepositories()
-            .map {
-                return@map if (it.isSuccessful && it.body() != null && it.body()!!.isNotEmpty()) {
-                    Timber.d("TrendingRepos: %s", it.body())
-                    for (item in it.body()!!){
-                        githubTrendingDao.insertGihubtrendingRepository(item)
-                    }
-                    it.body()
+            .map { response ->
+                return@map if (isValidResponse(response)) {
+                    insertResponseIntoDb(response.body()!!)
+                    response.body()
                 } else {
-                    emptyList()
+                    return@map Single.error<Exception>(Exception(response.errorBody().toString()))
                 }
             }
+    }
+
+    private fun insertResponseIntoDb(githubTrendingResponseList: List<GithubTrendingResponse>) {
+        for (item in githubTrendingResponseList) {
+            githubTrendingDao.insertGihubtrendingRepository(item)
+        }
+        addCurrentTimeStamp()
+    }
+
+    private fun isValidResponse(response: Response<List<GithubTrendingResponse>>) =
+        response.isSuccessful && response.body() != null && response.body()!!.isNotEmpty()
+
+
+    private fun addCurrentTimeStamp() {
+        try {
+            prefsUtils.freshDataTimeStamp = System.currentTimeMillis()
+        } catch (e: RuntimeException) {
+            Timber.e(e)
+        }
+    }
+
+    private fun isCacheExpired(): Boolean {
+        var isCacheExpired = false
+        try {
+            isCacheExpired =
+                prefsUtils.freshDataTimeStamp < System.currentTimeMillis() * TWO_HOURS_IN_MILLISECONDS
+        } catch (e: RuntimeException) {
+            Timber.e(e)
+        }
+        Timber.e("CacheExpired: %s", isCacheExpired)
+        return isCacheExpired
     }
 }

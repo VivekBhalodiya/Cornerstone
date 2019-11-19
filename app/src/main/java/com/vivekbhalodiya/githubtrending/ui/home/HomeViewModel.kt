@@ -20,7 +20,7 @@ class HomeViewModel @Inject constructor() : BaseViewModel() {
     lateinit var githubTrendingRepository: GithubTrendingRepository
 
     fun test() {
-        githubTrendingRepository.getGihubTrendingRepos()
+        githubTrendingRepository.getGithubTrendingRepos()
             .onBackground()
             .subscribe({},{
                 Timber.e(it)

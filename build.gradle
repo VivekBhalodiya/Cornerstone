@@ -45,6 +45,7 @@ ext {
     rxJava2Version = "2.1.0"
     timberVersion = "4.7.1"
     glideVersion = "4.10.0"
+    shimmerVersion = "0.5.0"
 
     //test
     junitVersion = "4.12"

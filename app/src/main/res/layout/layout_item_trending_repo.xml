@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Vivek Bhalodiya on 20/11/19 12:14 AM
+  ~ Copyright (c) 2019 . All rights reserved.
+  ~ Last modified 20/11/19 12:14 AM
+  -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+</LinearLayout>

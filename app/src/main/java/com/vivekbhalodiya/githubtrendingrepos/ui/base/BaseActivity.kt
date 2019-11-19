@@ -13,7 +13,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.vivekbhalodiya.githubtrendingrepos.utils.NetworkUtils
 import dagger.android.support.DaggerAppCompatActivity
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
 /**
@@ -22,9 +25,12 @@ import javax.inject.Inject
 abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerAppCompatActivity() {
     lateinit var viewModel: VM
     protected lateinit var binding: B
+    private var mCompositeDisposable: CompositeDisposable? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var networkUtils: NetworkUtils
 
     @LayoutRes
     protected abstract fun layoutId(): Int
@@ -37,8 +43,44 @@ abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerAppComp
         bindContentView(layoutId())
     }
 
+    override fun onStart() {
+        super.onStart()
+        addNetworkConnectivityObserver()
+    }
+
+    override fun onStop() {
+        clearCompositeDisposable()
+        super.onStop()
+    }
+
+    protected fun addDisposable(disposable: Disposable?) {
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = CompositeDisposable()
+        }
+        disposable?.let {
+            mCompositeDisposable!!.add(it)
+        }
+    }
+
     private fun bindContentView(layoutId: Int) {
         binding = DataBindingUtil.setContentView(this, layoutId)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass())
+    }
+
+    private fun addNetworkConnectivityObserver() {
+        addDisposable(networkUtils.networkConnectivityStream()
+            .subscribe { isConnected ->
+                viewModel.let { viewModel ->
+                    (viewModel as BaseViewModel).connectionStatus = isConnected
+                }
+            })
+    }
+
+    private fun clearCompositeDisposable() {
+        mCompositeDisposable?.let {
+            it.dispose()
+            it.clear()
+            mCompositeDisposable = null
+        }
     }
 }

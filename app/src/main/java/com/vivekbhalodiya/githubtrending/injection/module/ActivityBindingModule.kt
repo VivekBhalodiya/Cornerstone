@@ -6,11 +6,13 @@
 
 package com.vivekbhalodiya.githubtrending.injection.module
 
+import androidx.fragment.app.FragmentManager
 import com.vivekbhalodiya.githubtrending.injection.scope.ActivityScope
 import com.vivekbhalodiya.githubtrending.ui.home.HomeActivity
 import com.vivekbhalodiya.githubtrending.ui.home.HomeActivityModule
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.android.ContributesAndroidInjector
 import dagger.android.support.DaggerAppCompatActivity
 
@@ -21,7 +23,7 @@ import dagger.android.support.DaggerAppCompatActivity
 @Module
 abstract class ActivityBindingModule {
     @ActivityScope
-    @ContributesAndroidInjector(modules = [HomeActivityModule::class])
+    @ContributesAndroidInjector(modules = [HomeActivityModule::class, FragmentBindingModule::class])
     internal abstract fun bindHomeActivity(): HomeActivity
 }
 
@@ -41,5 +43,8 @@ abstract class ActivityModule<in T : DaggerAppCompatActivity> {
 
 @Module
 open class BaseActivityModule {
-
+    @Provides
+    @ActivityScope
+    fun provideFragmentManager(activity: DaggerAppCompatActivity): FragmentManager =
+        activity.supportFragmentManager
 }

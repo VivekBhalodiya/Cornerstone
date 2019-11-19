@@ -19,7 +19,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [AndroidSupportInjectionModule::class, AppModule::class, ViewModelFactoryModule::class,
-        ActivityBindingModule::class, NetworkModule::class, RepositoryModule::class]
+        ActivityBindingModule::class, NetworkModule::class, RepositoryModule::class, FragmentBindingModule::class]
 )
 interface AppComponent : AndroidInjector<GithubTrendingApp> {
     @Component.Factory

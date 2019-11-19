@@ -11,6 +11,8 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.vivekbhalodiya.githubtrending.data.GithubTrendingResponse
+import dagger.multibindings.IntoSet
+import io.reactivex.Observable
 import io.reactivex.Single
 
 /**
@@ -21,7 +23,10 @@ import io.reactivex.Single
 interface GithubTrendingDao {
 
     @Query("SELECT * FROM trendingrepos")
-    fun queryGithubTrendingRepos(): Single<List<GithubTrendingResponse>>
+    fun queryGithubTrendingRepos(): Observable<List<GithubTrendingResponse>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertGihubtrendingRepository(githubTrendingRepo: GithubTrendingResponse)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllGithubTrendingRepos(githubTrendingRepos: List<GithubTrendingResponse>)

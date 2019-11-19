@@ -9,6 +9,7 @@ package com.vivekbhalodiya.githubtrending.injection.module
 import com.vivekbhalodiya.githubtrending.data.repos.GithubTrendingRepository
 import com.vivekbhalodiya.githubtrending.data.source.local.GithubTrendingDao
 import com.vivekbhalodiya.githubtrending.data.source.remote.ApiInterface
+import com.vivekbhalodiya.githubtrending.utils.NetworkUtils
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -24,6 +25,7 @@ class RepositoryModule {
     @Singleton
     internal fun provideGithubTrendingRepository(
         apiInterface: ApiInterface,
-        githubTrendingDao: GithubTrendingDao
-    ) = GithubTrendingRepository(apiInterface, githubTrendingDao)
+        githubTrendingDao: GithubTrendingDao,
+        networkUtils: NetworkUtils
+    ) = GithubTrendingRepository(apiInterface, githubTrendingDao, networkUtils)
 }

@@ -21,47 +21,47 @@ import com.google.gson.annotations.SerializedName
 data class GithubTrendingResponse(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Long,
+    val id: Long? = null,
 
     @SerializedName("author")
     @ColumnInfo(name = "author")
-    val author: String = "",
+    val author: String? = null,
 
     @SerializedName("name")
     @ColumnInfo(name = "name")
-    val name: String = "",
+    val name: String? = null,
 
     @SerializedName("avatar")
     @ColumnInfo(name = "avatar")
-    val avatar: String = "",
+    val avatar: String? = null,
 
     @SerializedName("url")
     @ColumnInfo(name = "url")
-    val url: String = "",
+    val url: String? = null,
 
     @SerializedName("description")
     @ColumnInfo(name = "description")
-    val description: String = "",
+    val description: String? = null,
 
     @SerializedName("language")
     @ColumnInfo(name = "language")
-    val language: String = "",
+    val language: String? = null,
 
     @SerializedName("languageColor")
     @ColumnInfo(name = "languageColor")
-    val languageColor: String = "",
+    val languageColor: String? = null,
 
     @SerializedName("stars")
     @ColumnInfo(name = "stars")
-    val stars: Int = 0,
+    val stars: Int? = null,
 
     @SerializedName("forks")
     @ColumnInfo(name = "forks")
-    val forks: Int = 0,
+    val forks: Int? = null,
 
     @SerializedName("currentPeriodStars")
     @ColumnInfo(name = "currentPeriodStars")
-    val currentPeriodStars: Int = 0
+    val currentPeriodStars: Int? = null
 
    /* @SerializedName("builtBy")
     @ColumnInfo(name = "builtBy")

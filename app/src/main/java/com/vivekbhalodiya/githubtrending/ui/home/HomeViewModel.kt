@@ -8,6 +8,8 @@ package com.vivekbhalodiya.githubtrending.ui.home
 
 import com.vivekbhalodiya.githubtrending.data.repos.GithubTrendingRepository
 import com.vivekbhalodiya.githubtrending.ui.base.BaseViewModel
+import com.vivekbhalodiya.githubtrending.utils.onBackground
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -18,6 +20,10 @@ class HomeViewModel @Inject constructor() : BaseViewModel() {
     lateinit var githubTrendingRepository: GithubTrendingRepository
 
     fun test() {
-        githubTrendingRepository.apiInterface
+        githubTrendingRepository.getGihubTrendingRepos()
+            .onBackground()
+            .subscribe({},{
+                Timber.e(it)
+            })
     }
 }

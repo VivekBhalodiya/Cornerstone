@@ -9,6 +9,8 @@ package com.vivekbhalodiya.githubtrendingrepos.injection.module
 import android.content.Context
 import com.vivekbhalodiya.githubtrendingrepos.BuildConfig
 import com.vivekbhalodiya.githubtrendingrepos.injection.qualifiers.ApplicationContext
+import com.vivekbhalodiya.githubtrendingrepos.utils.NetworkUtils
+import com.vivekbhalodiya.githubtrendingrepos.utils.OnSubscribeBroadcastReceiver
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -48,5 +50,14 @@ class NetworkModule {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .client(okHttpClient)
             .build()
+    }
+
+    @Provides
+    @Singleton
+    internal fun provideNetworkUtils(
+        @ApplicationContext context: Context,
+        onSubscribeBroadcastReceiver: OnSubscribeBroadcastReceiver
+    ): NetworkUtils {
+        return NetworkUtils(context, onSubscribeBroadcastReceiver)
     }
 }

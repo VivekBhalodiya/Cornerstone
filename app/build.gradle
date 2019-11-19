@@ -13,7 +13,7 @@ android {
         enabled = true
     }
     defaultConfig {
-        applicationId "com.vivekbhalodiya.githubtrendingrepos"
+        applicationId "com.vivekbhalodiya.githubtrending"
         minSdkVersion rootProject.ext.minSDKVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

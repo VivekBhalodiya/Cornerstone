@@ -6,11 +6,18 @@
 
 package com.vivekbhalodiya.githubtrending.ui.home
 
+import com.vivekbhalodiya.githubtrending.data.repos.GithubTrendingRepository
 import com.vivekbhalodiya.githubtrending.ui.base.BaseViewModel
 import javax.inject.Inject
 
 /**
  * Created by Vivek Patel on 2019-11-19.
  */
-class HomeViewModel @Inject constructor(): BaseViewModel() {
+class HomeViewModel @Inject constructor() : BaseViewModel() {
+    @Inject
+    lateinit var githubTrendingRepository: GithubTrendingRepository
+
+    fun test() {
+        githubTrendingRepository.apiInterface
+    }
 }

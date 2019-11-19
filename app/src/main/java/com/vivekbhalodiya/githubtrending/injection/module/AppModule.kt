@@ -6,12 +6,14 @@
 
 package com.vivekbhalodiya.githubtrending.injection.module
 
-import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.vivekbhalodiya.githubtrending.GithubTrendingApp
 import com.vivekbhalodiya.githubtrending.data.source.local.Database
 import com.vivekbhalodiya.githubtrending.data.source.local.GithubTrendingDao
+import com.vivekbhalodiya.githubtrending.injection.qualifiers.ApplicationContext
 import com.vivekbhalodiya.githubtrending.utils.AppConstants
 import dagger.Module
 import dagger.Provides
@@ -34,9 +36,16 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideTrendingRepositoriesDatabase(app: Application): Database =
+    @ApplicationContext
+    fun provideAppContext(application: GithubTrendingApp): Context {
+        return application
+    }
+
+    @Provides
+    @Singleton
+    fun provideTrendingRepositoriesDatabase(@ApplicationContext context: Context): Database =
         Room.databaseBuilder(
-            app,
+            context,
             Database::class.java,
             AppConstants.DATABASE_NAME
         )

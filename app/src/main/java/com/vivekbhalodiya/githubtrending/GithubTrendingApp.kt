@@ -8,7 +8,7 @@ package com.vivekbhalodiya.githubtrending
 
 import com.vivekbhalodiya.githubtrending.injection.component.DaggerAppComponent
 import dagger.android.AndroidInjector
-import dagger.android.support.DaggerApplication
+import dagger.android.DaggerApplication
 import timber.log.Timber
 
 /**
@@ -16,8 +16,8 @@ import timber.log.Timber
  */
 class GithubTrendingApp : DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerAppComponent.builder()
-            .create(this)
+        return DaggerAppComponent
+            .factory().create(this)
     }
 
     override fun onCreate() {

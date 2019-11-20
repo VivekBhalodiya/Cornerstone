@@ -8,9 +8,7 @@ package com.vivekbhalodiya.githubtrending.ui.trending
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.SimpleItemAnimator
@@ -31,14 +29,17 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
         getGithubTrendingRepos()
 
         setupRecyclerView()
+
+        setupSwipeToRefresh()
     }
 
     private fun getGithubTrendingRepos() {
-        viewModel.test()
+        viewModel.getGithubTrendingRepos()
 
         viewModel.trendingRepositoriesResult().observe(this, Observer { result ->
             result?.let {
                 trendingReposRVAdapter.setData(it)
+                dismissSwipeRefresh()
             }
         })
     }
@@ -49,6 +50,18 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             binding.recyclerviewTrendingRepos.adapter = trendingReposRVAdapter
             setHasFixedSize(true)
+        }
+    }
+
+    private fun setupSwipeToRefresh() {
+        binding.layoutSwiperefresh.setOnRefreshListener {
+            viewModel.getGithubTrendingRepos()
+        }
+    }
+
+    private fun dismissSwipeRefresh() {
+        with(binding.layoutSwiperefresh) {
+            if (isRefreshing) isRefreshing = false
         }
     }
 }

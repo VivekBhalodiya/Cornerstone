@@ -18,7 +18,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.getGithubTrendingRepos.runner.AndroidJUnitRunner"
     }
     buildTypes {
         debug {
@@ -80,8 +80,8 @@ dependencies {
     //Facebook Shimmer
     implementation "com.facebook.shimmer:shimmer:${rootProject.ext.shimmerVersion}"
 
-    //test
+    //getGithubTrendingRepos
     testImplementation "junit:junit:${rootProject.ext.junitVersion}"
-    androidTestImplementation "androidx.test:runner:${rootProject.ext.testRunnerVersion}"
-    androidTestImplementation "androidx.test.espresso:espresso-core:${rootProject.ext.testEspressoVersion}"
+    androidTestImplementation "androidx.getGithubTrendingRepos:runner:${rootProject.ext.testRunnerVersion}"
+    androidTestImplementation "androidx.getGithubTrendingRepos.espresso:espresso-core:${rootProject.ext.testEspressoVersion}"
 }

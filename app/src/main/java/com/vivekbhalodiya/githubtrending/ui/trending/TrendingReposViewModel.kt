@@ -26,7 +26,7 @@ class TrendingReposViewModel @Inject constructor() : BaseViewModel() {
 
     fun trendingRepositoriesResult(): LiveData<List<GithubTrendingResponse>> = trendingRepositoriesResult
 
-    fun test() {
+    fun getGithubTrendingRepos() {
         addDisposable(githubTrendingRepository.getGithubTrendingRepos()
             .onBackground()
             .subscribe({

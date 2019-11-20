@@ -8,6 +8,7 @@ package com.vivekbhalodiya.githubtrending.injection.module
 
 import com.vivekbhalodiya.githubtrending.injection.scope.ActivityScope
 import com.vivekbhalodiya.githubtrending.injection.scope.FragmentScope
+import com.vivekbhalodiya.githubtrending.ui.error.ErrorStateFragment
 import com.vivekbhalodiya.githubtrending.ui.trending.TrendingReposFragment
 import dagger.Binds
 import dagger.Module
@@ -23,6 +24,10 @@ abstract class FragmentBindingModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [FragmentModule::class])
     internal abstract fun provideTrendingReposFragment(): TrendingReposFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [FragmentModule::class])
+    internal abstract fun provideErrorStateFragment(): ErrorStateFragment
 }
 
 @Module

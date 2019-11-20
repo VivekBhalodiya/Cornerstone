@@ -15,7 +15,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.vivekbhalodiya.githubtrending.ui.base.navigator.Navigator
 import com.vivekbhalodiya.githubtrending.utils.NetworkUtils
 import dagger.android.support.DaggerAppCompatActivity
 import io.reactivex.disposables.CompositeDisposable
@@ -34,8 +33,6 @@ abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerAppComp
     lateinit var viewModelFactory: ViewModelProvider.Factory
     @Inject
     lateinit var networkUtils: NetworkUtils
-    @Inject
-    lateinit var navigator: Navigator
 
     @LayoutRes
     protected abstract fun layoutId(): Int
@@ -67,8 +64,6 @@ abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerAppComp
             mCompositeDisposable!!.add(it)
         }
     }
-
-    protected fun getActivityNavigator() = navigator
 
     private fun bindContentView(layoutId: Int) {
         binding = DataBindingUtil.setContentView(this, layoutId)

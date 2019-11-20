@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Trending</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_trending">Trending</string>
+    <string name="something_went_wrong">Something went wrong..</string>
+    <string name="an_alien_probably_blocking_your_signal">An alien probably blocking your signal.</string>
+    <string name="retry">Retry</string>
 </resources>

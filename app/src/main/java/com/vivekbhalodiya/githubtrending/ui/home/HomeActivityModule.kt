@@ -13,5 +13,4 @@ import dagger.Module
  * Created by Vivek Patel on 2019-11-19.
  */
 @Module
-abstract class HomeActivityModule : ActivityModule<HomeActivity>() {
-}
+abstract class HomeActivityModule : ActivityModule<HomeActivity>()

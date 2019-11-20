@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+      <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:src="@drawable/nointernet_connection" />
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen_24dp"
+          android:gravity="center"
+          android:text="@string/something_went_wrong" />
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="@dimen/dimen_8dp"
+          android:gravity="center"
+          android:text="@string/an_alien_probably_blocking_your_signal" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_retry"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_48dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/dimen_16dp"
+        android:text="@string/retry" />
+
+  </FrameLayout>
+</layout>

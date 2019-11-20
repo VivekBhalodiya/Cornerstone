@@ -32,7 +32,6 @@ abstract class BaseFragment<B : ViewDataBinding, VM : ViewModel> : DaggerFragmen
 
     abstract fun getViewModelClass(): Class<VM>
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

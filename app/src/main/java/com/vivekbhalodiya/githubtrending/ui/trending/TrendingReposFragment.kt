@@ -6,15 +6,18 @@
 
 package com.vivekbhalodiya.githubtrending.ui.trending
 
-
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.SimpleItemAnimator
 import com.vivekbhalodiya.githubtrending.R
 import com.vivekbhalodiya.githubtrending.databinding.FragmentTrendingReposBinding
 import com.vivekbhalodiya.githubtrending.ui.base.BaseFragment
+import com.vivekbhalodiya.githubtrending.ui.base.navigator.ActivityNavigator
+import com.vivekbhalodiya.githubtrending.ui.error.ErrorStateFragment
+import com.vivekbhalodiya.githubtrending.ui.home.HomeActivity
 
 class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, TrendingReposViewModel>() {
     private val trendingReposRVAdapter: TrendingReposRVAdapter by lazy { TrendingReposRVAdapter() }
@@ -23,7 +26,10 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
 
     override fun getViewModelClass() = TrendingReposViewModel::class.java
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         getGithubTrendingRepos()
@@ -36,12 +42,17 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
     private fun getGithubTrendingRepos() {
         viewModel.getGithubTrendingRepos()
 
-        viewModel.trendingRepositoriesResult().observe(this, Observer { result ->
-            result?.let {
-                trendingReposRVAdapter.setData(it)
-                dismissSwipeRefresh()
-            }
-        })
+        viewModel.trendingRepositoriesResult()
+            .observe(this, Observer { result ->
+                result?.let {
+                    if (it.isEmpty()) {
+                        showErrorState()
+                    } else {
+                        trendingReposRVAdapter.setData(it)
+                        dismissSwipeRefresh()
+                    }
+                }
+            })
     }
 
     private fun setupRecyclerView() {
@@ -63,5 +74,13 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
         with(binding.layoutSwiperefresh) {
             if (isRefreshing) isRefreshing = false
         }
+    }
+
+    private fun showErrorState() {
+        ActivityNavigator.replaceFragment(
+            R.id.fragment_container_home,
+            ErrorStateFragment(),
+            activity as AppCompatActivity
+        )
     }
 }

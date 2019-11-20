@@ -82,6 +82,4 @@ dependencies {
 
     //getGithubTrendingRepos
     testImplementation "junit:junit:${rootProject.ext.junitVersion}"
-    androidTestImplementation "androidx.getGithubTrendingRepos:runner:${rootProject.ext.testRunnerVersion}"
-    androidTestImplementation "androidx.getGithubTrendingRepos.espresso:espresso-core:${rootProject.ext.testEspressoVersion}"
 }

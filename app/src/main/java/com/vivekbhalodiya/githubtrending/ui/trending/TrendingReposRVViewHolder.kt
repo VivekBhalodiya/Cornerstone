@@ -6,6 +6,8 @@
 
 package com.vivekbhalodiya.githubtrending.ui.trending
 
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -20,18 +22,27 @@ class TrendingReposRVViewHolder(private val viewBinding: LayoutItemTrendingRepoB
     RecyclerView.ViewHolder(viewBinding.root) {
 
     fun bind(trendingRepo: GithubTrendingResponse) {
-        with(viewBinding){
+        with(viewBinding) {
             textviewAuthor.text = trendingRepo.author
             textviewRepoName.text = trendingRepo.name
             setNetworkImage(imageviewAvatar, trendingRepo.avatar, true)
+            if (trendingRepo.expanded) {
+                textviewDescription.text = trendingRepo.description
+                textviewLanguage.text = trendingRepo.language
+                textviewStarsCount.text = trendingRepo.stars.toString()
+                textviewForkCount.text = trendingRepo.forks.toString()
+                expandedLayout.visibility = VISIBLE
+            } else {
+                expandedLayout.visibility = GONE
+            }
         }
     }
 
-    private fun setNetworkImage(targetImageView: ImageView, url: String?, circleCrop: Boolean){
+    private fun setNetworkImage(targetImageView: ImageView, url: String?, circleCrop: Boolean) {
         val glide = Glide.with(viewBinding.root)
             .load(url)
 
-        if (circleCrop){
+        if (circleCrop) {
             glide.apply {
                 apply(RequestOptions.circleCropTransform())
                 into(targetImageView)

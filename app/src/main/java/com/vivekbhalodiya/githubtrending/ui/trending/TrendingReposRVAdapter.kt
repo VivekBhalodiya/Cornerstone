@@ -33,7 +33,13 @@ class TrendingReposRVAdapter : RecyclerView.Adapter<TrendingReposRVViewHolder>()
     override fun getItemCount() = trendingReposList.size
 
     override fun onBindViewHolder(holder: TrendingReposRVViewHolder, position: Int) {
-        holder.bind(trendingReposList[holder.adapterPosition])
+        val currentItem = trendingReposList[holder.adapterPosition]
+        holder.bind(currentItem)
+
+        holder.itemView.setOnClickListener {
+            currentItem.expanded = !currentItem.expanded
+            notifyItemChanged(holder.adapterPosition)
+        }
     }
 
     fun setData(trendingReposList: List<GithubTrendingResponse>) {

@@ -12,6 +12,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.vivekbhalodiya.githubtrending.R
 import com.vivekbhalodiya.githubtrending.databinding.FragmentTrendingReposBinding
 import com.vivekbhalodiya.githubtrending.ui.base.BaseFragment
@@ -42,6 +44,11 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
     }
 
     private fun setupRecyclerView() {
-        binding.recyclerviewTrendingRepos.adapter = trendingReposRVAdapter
+        with(binding.recyclerviewTrendingRepos) {
+            (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
+            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            binding.recyclerviewTrendingRepos.adapter = trendingReposRVAdapter
+            setHasFixedSize(true)
+        }
     }
 }

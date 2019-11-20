@@ -14,7 +14,7 @@ import com.vivekbhalodiya.githubtrending.data.model.GithubTrendingResponse
  * Created by Vivek Patel on 2019-11-19.
  */
 
-@Database(entities = arrayOf(GithubTrendingResponse::class), version = 2)
+@Database(entities = arrayOf(GithubTrendingResponse::class), version = 3)
 abstract class Database : RoomDatabase() {
     abstract fun trendingRepositoriesDao(): GithubTrendingDao
 }

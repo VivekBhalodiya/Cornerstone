@@ -61,11 +61,13 @@ data class GithubTrendingResponse(
 
     @SerializedName("currentPeriodStars")
     @ColumnInfo(name = "currentPeriodStars")
-    val currentPeriodStars: Int? = null
+    val currentPeriodStars: Int? = null,
 
-   /* @SerializedName("builtBy")
-    @ColumnInfo(name = "builtBy")
-    val builtBy: List<BuiltBy> = listOf()*/
+    var expanded: Boolean = false
+
+    /* @SerializedName("builtBy")
+     @ColumnInfo(name = "builtBy")
+     val builtBy: List<BuiltBy> = listOf()*/
 ) {
     data class BuiltBy(
         @SerializedName("username")

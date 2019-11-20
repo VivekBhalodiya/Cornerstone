@@ -6,6 +6,8 @@
 
 package com.vivekbhalodiya.githubtrending.ui.base
 
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
@@ -44,6 +46,7 @@ abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerAppComp
         super.onCreate(savedInstanceState)
         // Bind the view and bind the viewModel to layout
         bindContentView(layoutId())
+        setupStatusBarColorBelowApi23()
     }
 
     override fun onStart() {
@@ -86,6 +89,15 @@ abstract class BaseActivity<B : ViewDataBinding, VM : ViewModel> : DaggerAppComp
             it.dispose()
             it.clear()
             mCompositeDisposable = null
+        }
+    }
+
+    private fun setupStatusBarColorBelowApi23() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                window.statusBarColor = Color.WHITE
+                window.navigationBarColor = Color.BLACK
+            }
         }
     }
 }

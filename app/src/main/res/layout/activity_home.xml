@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical">
-
-    <FrameLayout
-        android:id="@+id/fragment_container_home"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-  </LinearLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/layout_toolbar_white" />
+
+        <include
+            layout="@layout/layout_divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_1dp"/>
+
+        <FrameLayout
+            android:id="@+id/fragment_container_home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 </layout>

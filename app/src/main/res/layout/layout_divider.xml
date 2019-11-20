@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Vivek Bhalodiya on 20/11/19 7:34 PM
+  ~ Copyright (c) 2019 . All rights reserved.
+  ~ Last modified 20/11/19 7:34 PM
+  -->
+
+<View xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dimen_1dp"
+    android:background="@color/colorDivider" />

@@ -16,11 +16,19 @@ import com.vivekbhalodiya.githubtrending.databinding.FragmentTrendingReposBindin
 import com.vivekbhalodiya.githubtrending.ui.base.BaseFragment
 
 class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, TrendingReposViewModel>() {
+    private val trendingReposRVAdapter: TrendingReposRVAdapter by lazy { TrendingReposRVAdapter() }
+
     override fun layoutId() = R.layout.fragment_trending_repos
 
     override fun getViewModelClass() = TrendingReposViewModel::class.java
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView() {
+        binding.recyclerviewTrendingRepos.adapter = trendingReposRVAdapter
     }
 }

@@ -8,6 +8,7 @@ package com.vivekbhalodiya.githubtrending.ui.trending
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.vivekbhalodiya.githubtrending.R
 import com.vivekbhalodiya.githubtrending.data.model.GithubTrendingResponse
@@ -20,7 +21,8 @@ class TrendingReposRVAdapter : RecyclerView.Adapter<TrendingReposRVViewHolder>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrendingReposRVViewHolder {
         return TrendingReposRVViewHolder(
-            LayoutInflater.from(parent.context).inflate(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
                 R.layout.layout_item_trending_repo,
                 parent,
                 false
@@ -31,7 +33,7 @@ class TrendingReposRVAdapter : RecyclerView.Adapter<TrendingReposRVViewHolder>()
     override fun getItemCount() = trendingReposList.size
 
     override fun onBindViewHolder(holder: TrendingReposRVViewHolder, position: Int) {
-        holder.bind()
+        holder.bind(trendingReposList[holder.adapterPosition])
     }
 
     fun setData(trendingReposList: List<GithubTrendingResponse>) {

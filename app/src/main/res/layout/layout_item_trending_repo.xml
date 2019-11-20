@@ -3,121 +3,122 @@
   ~ Copyright (c) 2019 . All rights reserved.
   ~ Last modified 20/11/19 12:14 AM
   -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="@dimen/dimen_16dp"
-    android:paddingBottom="@dimen/dimen_16dp"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imageview_avatar"
-            android:layout_width="@dimen/dimen_32dp"
-            android:layout_height="@dimen/dimen_32dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="@dimen/dimen_16dp"
-            android:layout_marginRight="@dimen/dimen_16dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/dimen_36dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textview_author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="google" />
-
-            <TextView
-                android:id="@+id/textview_repo_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_6dp"
-                tools:text="Deep-Learning-with-TensorFlow-book" />
-
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/expanded_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="visible">
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dimen_16dp"
+        android:paddingBottom="@dimen/dimen_16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/dimen_8dp"
-            android:paddingStart="@dimen/dimen_64dp"
-            android:paddingEnd="@dimen/dimen_16dp">
-            <TextView
-                android:id="@+id/textview_description"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageview_avatar"
+                android:layout_width="@dimen/dimen_32dp"
+                android:layout_height="@dimen/dimen_32dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dimen_16dp"
+                android:layout_marginRight="@dimen/dimen_16dp" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="long description" />
-
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dimen_8dp">
-
-                <ImageView
-                    android:id="@+id/imageview_language_color"
-                    android:layout_width="@dimen/dimen_16dp"
-                    android:layout_height="@dimen/dimen_16dp"
-                    android:layout_gravity="center_vertical"
-                    />
+                android:layout_marginEnd="@dimen/dimen_36dp"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textview_language"
-                    android:layout_marginStart="@dimen/dimen_4dp"
+                    android:id="@+id/textview_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="C++" />
-
-                <ImageView
-                    android:id="@+id/imageview_star"
-                    android:layout_width="@dimen/dimen_16dp"
-                    android:layout_height="@dimen/dimen_16dp"
-                    android:layout_marginStart="@dimen/dimen_16dp"
-                    android:layout_gravity="center_vertical"
-                    />
+                    tools:text="google" />
 
                 <TextView
-                    android:id="@+id/textview_stars_count"
-                    android:layout_marginStart="@dimen/dimen_4dp"
+                    android:id="@+id/textview_repo_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="14,236" />
+                    android:layout_marginTop="@dimen/dimen_6dp"
+                    tools:text="Deep-Learning-with-TensorFlow-book" />
 
-                <ImageView
-                    android:id="@+id/imageview_fork"
-                    android:layout_width="@dimen/dimen_16dp"
-                    android:layout_height="@dimen/dimen_16dp"
-                    android:layout_marginStart="@dimen/dimen_16dp"
-                    android:layout_gravity="center_vertical"
-                    />
 
-                <TextView
-                    android:id="@+id/textview_fork_count"
-                    android:layout_marginStart="@dimen/dimen_4dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="4,376" />
-            </TableRow>
+            </LinearLayout>
+
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/expanded_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8dp"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/dimen_64dp"
+                android:paddingEnd="@dimen/dimen_16dp">
+
+                <TextView
+                    android:id="@+id/textview_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="long description" />
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8dp">
+
+                    <ImageView
+                        android:id="@+id/imageview_language_color"
+                        android:layout_width="@dimen/dimen_16dp"
+                        android:layout_height="@dimen/dimen_16dp"
+                        android:layout_gravity="center_vertical" />
+
+                    <TextView
+                        android:id="@+id/textview_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_4dp"
+                        tools:text="C++" />
+
+                    <ImageView
+                        android:id="@+id/imageview_star"
+                        android:layout_width="@dimen/dimen_16dp"
+                        android:layout_height="@dimen/dimen_16dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/dimen_16dp" />
+
+                    <TextView
+                        android:id="@+id/textview_stars_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_4dp"
+                        tools:text="14,236" />
+
+                    <ImageView
+                        android:id="@+id/imageview_fork"
+                        android:layout_width="@dimen/dimen_16dp"
+                        android:layout_height="@dimen/dimen_16dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/dimen_16dp" />
+
+                    <TextView
+                        android:id="@+id/textview_fork_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dimen_4dp"
+                        tools:text="4,376" />
+                </TableRow>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</layout>

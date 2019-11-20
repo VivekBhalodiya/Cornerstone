@@ -24,8 +24,11 @@ interface GithubTrendingDao {
     fun queryGithubTrendingRepos(): Observable<List<GithubTrendingResponse>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertGihubtrendingRepository(githubTrendingRepo: GithubTrendingResponse)
+    fun insertGithubTrendingRepos(githubTrendingRepo: GithubTrendingResponse)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllGithubTrendingRepos(githubTrendingRepos: List<GithubTrendingResponse>)
+
+    @Query("DELETE FROM trendingrepos")
+    fun deleteAll()
 }

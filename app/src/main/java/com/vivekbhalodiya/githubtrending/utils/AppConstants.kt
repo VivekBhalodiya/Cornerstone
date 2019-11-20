@@ -13,6 +13,11 @@ package com.vivekbhalodiya.githubtrending.utils
 class AppConstants {
     companion object {
         const val DATABASE_NAME = "trendingrepos_db"
-        const val TWO_HOURS_IN_MILLISECONDS: Long = 1000 * 60 * 60 * 2
+
+        //Time Conversions
+        private const val SECOND_IN_MILLISECONDS: Long = 1000
+        private const val MINUTE_IN_MILLISECONDS: Long = 60 * SECOND_IN_MILLISECONDS
+        const val HOUR_IN_MILLISECONDS: Long = 60 * MINUTE_IN_MILLISECONDS
+        const val TWO_HOURS_IN_MILLISECONDS: Long = HOUR_IN_MILLISECONDS * 2
     }
 }

@@ -33,7 +33,7 @@ class TrendingReposRVViewHolder(private val viewBinding: LayoutItemTrendingRepoB
 
         if (circleCrop){
             glide.apply {
-                apply(RequestOptions.centerCropTransform())
+                apply(RequestOptions.circleCropTransform())
                 into(targetImageView)
             }
         } else {

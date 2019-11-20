@@ -9,6 +9,7 @@ package com.vivekbhalodiya.githubtrending.data.repos
 import com.vivekbhalodiya.githubtrending.data.model.GithubTrendingResponse
 import com.vivekbhalodiya.githubtrending.data.source.local.GithubTrendingDao
 import com.vivekbhalodiya.githubtrending.data.source.remote.ApiInterface
+import com.vivekbhalodiya.githubtrending.utils.AppConstants.Companion.HOUR_IN_MILLISECONDS
 import com.vivekbhalodiya.githubtrending.utils.AppConstants.Companion.TWO_HOURS_IN_MILLISECONDS
 import com.vivekbhalodiya.githubtrending.utils.NetworkUtils
 import com.vivekbhalodiya.githubtrending.utils.PrefsUtils
@@ -17,7 +18,6 @@ import io.reactivex.Single
 import retrofit2.Response
 import timber.log.Timber
 import javax.inject.Inject
-import kotlin.Exception
 
 /**
  * Created by Vivek Patel on 2019-11-19.
@@ -30,21 +30,23 @@ class GithubTrendingRepository @Inject constructor(
 ) {
     fun getGithubTrendingRepos(): Observable<List<GithubTrendingResponse>> {
         var observablesFromApi: Observable<List<GithubTrendingResponse>>? = null
-        var observableFromDb: Observable<List<GithubTrendingResponse>>? = null
 
         if (networkUtils.isConnected()) {
             observablesFromApi = getGithubTrendingReposFromApi()
         }
+        val observableFromDb: Observable<List<GithubTrendingResponse>> =
+            getGithubTrendingReposFromDb()
 
-        observableFromDb = getGithubTrendingReposFromDb()
-
-        return if (networkUtils.isConnected()) {
-            Observable.concatArrayEager(
+        return when {
+            networkUtils.isConnected() -> Observable.concatArrayEager(
                 observablesFromApi,
                 observableFromDb
             )
-        } else {
-            observableFromDb
+            isCacheExpired() -> {
+                deleteGithubTrendingReposFromDb()
+                Observable.just<List<GithubTrendingResponse>>(emptyList())
+            }
+            else -> observableFromDb
         }
     }
 
@@ -56,6 +58,7 @@ class GithubTrendingRepository @Inject constructor(
         return apiInterface.getTrendingRepositories()
             .map { response ->
                 return@map if (isValidResponse(response)) {
+                    deleteGithubTrendingReposFromDb()
                     insertResponseIntoDb(response.body()!!)
                     response.body()
                 } else {
@@ -66,9 +69,13 @@ class GithubTrendingRepository @Inject constructor(
 
     private fun insertResponseIntoDb(githubTrendingResponseList: List<GithubTrendingResponse>) {
         for (item in githubTrendingResponseList) {
-            githubTrendingDao.insertGihubtrendingRepository(item)
+            githubTrendingDao.insertGithubTrendingRepos(item)
         }
         addCurrentTimeStamp()
+    }
+
+    private fun deleteGithubTrendingReposFromDb() {
+        githubTrendingDao.deleteAll()
     }
 
     private fun isValidResponse(response: Response<List<GithubTrendingResponse>>) =
@@ -77,7 +84,7 @@ class GithubTrendingRepository @Inject constructor(
 
     private fun addCurrentTimeStamp() {
         try {
-            prefsUtils.freshDataTimeStamp = System.currentTimeMillis()
+            prefsUtils.freshDataTimeStamp = System.currentTimeMillis() * HOUR_IN_MILLISECONDS
         } catch (e: RuntimeException) {
             Timber.e(e)
         }

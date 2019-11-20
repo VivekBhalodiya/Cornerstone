@@ -90,7 +90,9 @@
                         android:layout_width="@dimen/dimen_16dp"
                         android:layout_height="@dimen/dimen_16dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="@dimen/dimen_16dp" />
+                        android:layout_marginStart="@dimen/dimen_16dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/star_yellow_16"/>
 
                     <TextView
                         android:id="@+id/textview_stars_count"
@@ -104,7 +106,9 @@
                         android:layout_width="@dimen/dimen_16dp"
                         android:layout_height="@dimen/dimen_16dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="@dimen/dimen_16dp" />
+                        android:layout_marginStart="@dimen/dimen_16dp"
+                        android:src="@drawable/fork_black_16"
+                        android:scaleType="fitXY"/>
 
                     <TextView
                         android:id="@+id/textview_fork_count"

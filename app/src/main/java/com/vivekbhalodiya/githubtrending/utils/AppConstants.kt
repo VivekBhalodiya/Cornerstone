@@ -21,3 +21,14 @@ class AppConstants {
         const val TWO_HOURS_IN_MILLISECONDS: Long = HOUR_IN_MILLISECONDS * 2
     }
 }
+
+enum class TrendingReposOrderBy(val value: String) {
+    DEFAULT(""),
+    STARS("stars"),
+    NAME("name")
+}
+
+enum class OrderType {
+    DESC,
+    ASC
+}

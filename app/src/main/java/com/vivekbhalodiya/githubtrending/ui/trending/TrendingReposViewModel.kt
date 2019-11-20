@@ -11,6 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import com.vivekbhalodiya.githubtrending.data.model.GithubTrendingResponse
 import com.vivekbhalodiya.githubtrending.data.repos.GithubTrendingRepository
 import com.vivekbhalodiya.githubtrending.ui.base.BaseViewModel
+import com.vivekbhalodiya.githubtrending.utils.TrendingReposOrderBy
 import com.vivekbhalodiya.githubtrending.utils.onBackground
 import timber.log.Timber
 import javax.inject.Inject
@@ -22,17 +23,23 @@ class TrendingReposViewModel @Inject constructor() : BaseViewModel() {
     @Inject
     lateinit var githubTrendingRepository: GithubTrendingRepository
 
-    private val trendingRepositoriesResult: MutableLiveData<List<GithubTrendingResponse>> = MutableLiveData()
+    private val trendingRepositoriesResult: MutableLiveData<List<GithubTrendingResponse>> =
+        MutableLiveData()
 
-    fun trendingRepositoriesResult(): LiveData<List<GithubTrendingResponse>> = trendingRepositoriesResult
+    fun trendingRepositoriesResult(): LiveData<List<GithubTrendingResponse>> =
+        trendingRepositoriesResult
 
-    fun getGithubTrendingRepos() {
-        addDisposable(githubTrendingRepository.getGithubTrendingRepos()
+    fun getGithubTrendingRepos(
+        orderBy: TrendingReposOrderBy = TrendingReposOrderBy.DEFAULT,
+        orderType: String = ""
+    ) {
+        addDisposable(githubTrendingRepository.getGithubTrendingRepos(orderBy, orderType)
             .onBackground()
             .subscribe({
-               trendingRepositoriesResult.postValue(it)
+                trendingRepositoriesResult.postValue(it)
             }, {
                 Timber.e(it)
-            }))
+            })
+        )
     }
 }

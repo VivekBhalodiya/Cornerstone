@@ -6,10 +6,8 @@
 
 package com.vivekbhalodiya.githubtrending.data.source.local
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteQuery
 import com.vivekbhalodiya.githubtrending.data.model.GithubTrendingResponse
 import io.reactivex.Observable
 
@@ -21,7 +19,10 @@ import io.reactivex.Observable
 interface GithubTrendingDao {
 
     @Query("SELECT * FROM trendingrepos")
-    fun queryGithubTrendingRepos(): Observable<List<GithubTrendingResponse>>
+    fun getGithubTrendingRepos(): Observable<List<GithubTrendingResponse>>
+
+    @RawQuery(observedEntities = [GithubTrendingResponse::class])
+    fun queryGithubTrendingRepos(query: SupportSQLiteQuery): Observable<List<GithubTrendingResponse>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertGithubTrendingRepos(githubTrendingRepo: GithubTrendingResponse)

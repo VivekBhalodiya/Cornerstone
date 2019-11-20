@@ -18,6 +18,8 @@ import com.vivekbhalodiya.githubtrending.ui.base.BaseFragment
 import com.vivekbhalodiya.githubtrending.ui.base.navigator.ActivityNavigator
 import com.vivekbhalodiya.githubtrending.ui.error.ErrorStateFragment
 import com.vivekbhalodiya.githubtrending.ui.home.HomeActivity
+import com.vivekbhalodiya.githubtrending.utils.OrderType
+import com.vivekbhalodiya.githubtrending.utils.TrendingReposOrderBy
 
 class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, TrendingReposViewModel>() {
     private val trendingReposRVAdapter: TrendingReposRVAdapter by lazy { TrendingReposRVAdapter() }
@@ -40,7 +42,7 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
     }
 
     private fun getGithubTrendingRepos() {
-        viewModel.getGithubTrendingRepos()
+        viewModel.getGithubTrendingRepos(orderBy = TrendingReposOrderBy.NAME, orderType = OrderType.DESC.name)
 
         viewModel.trendingRepositoriesResult()
             .observe(this, Observer { result ->

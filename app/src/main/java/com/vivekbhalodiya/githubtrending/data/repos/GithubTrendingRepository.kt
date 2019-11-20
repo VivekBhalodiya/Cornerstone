@@ -6,6 +6,7 @@
 
 package com.vivekbhalodiya.githubtrending.data.repos
 
+import androidx.sqlite.db.SimpleSQLiteQuery
 import com.vivekbhalodiya.githubtrending.data.model.GithubTrendingResponse
 import com.vivekbhalodiya.githubtrending.data.source.local.GithubTrendingDao
 import com.vivekbhalodiya.githubtrending.data.source.remote.ApiInterface
@@ -13,6 +14,7 @@ import com.vivekbhalodiya.githubtrending.utils.AppConstants.Companion.HOUR_IN_MI
 import com.vivekbhalodiya.githubtrending.utils.AppConstants.Companion.TWO_HOURS_IN_MILLISECONDS
 import com.vivekbhalodiya.githubtrending.utils.NetworkUtils
 import com.vivekbhalodiya.githubtrending.utils.PrefsUtils
+import com.vivekbhalodiya.githubtrending.utils.TrendingReposOrderBy
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.Response
@@ -28,14 +30,17 @@ class GithubTrendingRepository @Inject constructor(
     private val networkUtils: NetworkUtils,
     private val prefsUtils: PrefsUtils
 ) {
-    fun getGithubTrendingRepos(): Observable<List<GithubTrendingResponse>> {
+    fun getGithubTrendingRepos(
+        orderBy: TrendingReposOrderBy = TrendingReposOrderBy.DEFAULT,
+        orderType: String = ""
+    ): Observable<List<GithubTrendingResponse>> {
         var observablesFromApi: Observable<List<GithubTrendingResponse>>? = null
 
         if (networkUtils.isConnected()) {
             observablesFromApi = getGithubTrendingReposFromApi()
         }
         val observableFromDb: Observable<List<GithubTrendingResponse>> =
-            getGithubTrendingReposFromDb()
+            getGithubTrendingReposFromDb(orderBy, orderType)
 
         return when {
             networkUtils.isConnected() -> Observable.concatArrayEager(
@@ -50,8 +55,15 @@ class GithubTrendingRepository @Inject constructor(
         }
     }
 
-    private fun getGithubTrendingReposFromDb(): Observable<List<GithubTrendingResponse>> {
-        return githubTrendingDao.queryGithubTrendingRepos()
+    private fun getGithubTrendingReposFromDb(
+        orderBy: TrendingReposOrderBy,
+        orderType: String
+    ): Observable<List<GithubTrendingResponse>> {
+        return if ((orderBy == TrendingReposOrderBy.DEFAULT).not()) {
+            githubTrendingDao.queryGithubTrendingRepos(getQueryToExecute(orderBy, orderType))
+        } else {
+            githubTrendingDao.getGithubTrendingRepos()
+        }
     }
 
     private fun getGithubTrendingReposFromApi(): Observable<List<GithubTrendingResponse>> {
@@ -76,6 +88,13 @@ class GithubTrendingRepository @Inject constructor(
 
     private fun deleteGithubTrendingReposFromDb() {
         githubTrendingDao.deleteAll()
+    }
+
+    private fun getQueryToExecute(
+        orderBy: TrendingReposOrderBy,
+        orderType: String
+    ): SimpleSQLiteQuery {
+        return SimpleSQLiteQuery("SELECT * FROM trendingrepos ORDER BY " + orderBy.value + " " + orderType)
     }
 
     private fun isValidResponse(response: Response<List<GithubTrendingResponse>>) =

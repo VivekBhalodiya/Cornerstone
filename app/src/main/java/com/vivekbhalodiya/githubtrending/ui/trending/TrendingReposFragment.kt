@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.vivekbhalodiya.githubtrending.R
 import com.vivekbhalodiya.githubtrending.databinding.FragmentTrendingReposBinding
 import com.vivekbhalodiya.githubtrending.ui.base.BaseFragment
@@ -25,7 +26,19 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        getGithubTrendingRepos()
+
         setupRecyclerView()
+    }
+
+    private fun getGithubTrendingRepos() {
+        viewModel.test()
+
+        viewModel.trendingRepositoriesResult().observe(this, Observer { result ->
+            result?.let {
+                trendingReposRVAdapter.setData(it)
+            }
+        })
     }
 
     private fun setupRecyclerView() {

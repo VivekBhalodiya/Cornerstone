@@ -34,9 +34,9 @@ class GithubTrendingRepository @Inject constructor(
 
         if (networkUtils.isConnected()) {
             observablesFromApi = getGithubTrendingReposFromApi()
-        } else if (isCacheExpired().not()) {
-            observableFromDb = getGithubTrendingReposFromDb()
         }
+
+        observableFromDb = getGithubTrendingReposFromDb()
 
         return if (networkUtils.isConnected()) {
             Observable.concatArrayEager(
@@ -44,7 +44,7 @@ class GithubTrendingRepository @Inject constructor(
                 observableFromDb
             )
         } else {
-            observableFromDb!!
+            observableFromDb
         }
     }
 

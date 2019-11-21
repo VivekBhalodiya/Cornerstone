@@ -15,8 +15,10 @@ import com.vivekbhalodiya.githubtrending.utils.AppConstants.Companion.TWO_HOURS_
 import com.vivekbhalodiya.githubtrending.utils.NetworkUtils
 import com.vivekbhalodiya.githubtrending.utils.PrefsUtils
 import com.vivekbhalodiya.githubtrending.utils.TrendingReposOrderBy
+import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Response
 import timber.log.Timber
 import javax.inject.Inject
@@ -47,7 +49,7 @@ class GithubTrendingRepository @Inject constructor(
 
         return when {
             //If order by is NOT requested, merge the data and return it.
-            networkUtils.isConnected() && orderBy == TrendingReposOrderBy.DEFAULT-> Observable.concatArrayEager(
+            networkUtils.isConnected() && orderBy == TrendingReposOrderBy.DEFAULT -> Observable.concatArrayEager(
                 observablesFromApi,
                 observableFromDb
             )
@@ -94,7 +96,10 @@ class GithubTrendingRepository @Inject constructor(
     }
 
     private fun deleteGithubTrendingReposFromDb() {
-        githubTrendingDao.deleteAll()
+        Completable.fromAction {
+            githubTrendingDao.deleteAll()
+        }.subscribeOn(Schedulers.io())
+            .subscribe()
     }
 
     private fun getQueryToExecute(
@@ -118,6 +123,9 @@ class GithubTrendingRepository @Inject constructor(
 
     private fun isCacheExpired(): Boolean {
         var isCacheExpired = false
+
+        if (prefsUtils.freshDataTimeStamp == 0L) return true
+
         try {
             isCacheExpired =
                 prefsUtils.freshDataTimeStamp < System.currentTimeMillis() * TWO_HOURS_IN_MILLISECONDS

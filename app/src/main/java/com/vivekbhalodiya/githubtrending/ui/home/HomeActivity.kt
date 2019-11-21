@@ -20,10 +20,18 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setupToolbar()
+
         ActivityNavigator.replaceFragment(
             R.id.fragment_container_home,
             TrendingReposFragment(),
             this
         )
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(binding.layoutToolbarWhite.toolbarWhite)
+        supportActionBar?.title = ""
     }
 }

@@ -4,20 +4,22 @@
   ~ Last modified 20/11/19 6:54 PM
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-  <androidx.appcompat.widget.Toolbar
-      android:id="@+id/toolbar_white"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+  <FrameLayout
       android:layout_width="match_parent"
-      android:layout_height="?actionBarSize" />
+      android:layout_height="wrap_content">
 
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:text="@string/title_trending"
-      android:textColor="@android:color/black"
-      android:textSize="@dimen/dimen_21sp" />
-</FrameLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_white"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/title_trending"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/dimen_21sp" />
+  </FrameLayout>
+</layout>

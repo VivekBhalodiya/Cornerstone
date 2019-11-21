@@ -7,7 +7,11 @@
 package com.vivekbhalodiya.githubtrending.ui.trending
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import android.view.View.GONE
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -17,7 +21,6 @@ import com.vivekbhalodiya.githubtrending.databinding.FragmentTrendingReposBindin
 import com.vivekbhalodiya.githubtrending.ui.base.BaseFragment
 import com.vivekbhalodiya.githubtrending.ui.base.navigator.ActivityNavigator
 import com.vivekbhalodiya.githubtrending.ui.error.ErrorStateFragment
-import com.vivekbhalodiya.githubtrending.ui.home.HomeActivity
 import com.vivekbhalodiya.githubtrending.utils.OrderType
 import com.vivekbhalodiya.githubtrending.utils.TrendingReposOrderBy
 
@@ -27,6 +30,11 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
     override fun layoutId() = R.layout.fragment_trending_repos
 
     override fun getViewModelClass() = TrendingReposViewModel::class.java
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
 
     override fun onViewCreated(
         view: View,
@@ -42,7 +50,7 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
     }
 
     private fun getGithubTrendingRepos() {
-        viewModel.getGithubTrendingRepos(orderBy = TrendingReposOrderBy.NAME, orderType = OrderType.DESC.name)
+        getGithubTrendingReposOrderBy()
 
         viewModel.trendingRepositoriesResult()
             .observe(this, Observer { result ->
@@ -51,6 +59,8 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
                         showErrorState()
                     } else {
                         trendingReposRVAdapter.setData(it)
+                        binding.layoutShimmer.stopShimmer()
+                        binding.layoutShimmer.visibility = GONE
                         dismissSwipeRefresh()
                     }
                 }
@@ -84,5 +94,55 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
             ErrorStateFragment(),
             activity as AppCompatActivity
         )
+    }
+
+    private fun getGithubTrendingReposOrderBy(orderBy: TrendingReposOrderBy = TrendingReposOrderBy.DEFAULT) {
+        when (orderBy) {
+            TrendingReposOrderBy.NAME -> {
+                viewModel.getGithubTrendingRepos(
+                    orderBy = TrendingReposOrderBy.NAME,
+                    orderType = OrderType.DESC.name
+                )
+            }
+            TrendingReposOrderBy.STARS -> {
+                viewModel.getGithubTrendingRepos(
+                    orderBy = TrendingReposOrderBy.STARS,
+                    orderType = OrderType.DESC.name
+                )
+            }
+            else -> viewModel.getGithubTrendingRepos()
+        }
+    }
+
+    override fun onCreateOptionsMenu(
+        menu: Menu,
+        inflater: MenuInflater
+    ) {
+        inflater.inflate(R.menu.menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_item_sort_name -> {
+                getGithubTrendingReposOrderBy(TrendingReposOrderBy.NAME)
+                true
+            }
+            R.id.menu_item_sort_stars -> {
+                getGithubTrendingReposOrderBy(TrendingReposOrderBy.STARS)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onResume() {
+        binding.layoutShimmer.startShimmer()
+        super.onResume()
+    }
+
+    override fun onPause() {
+        binding.layoutShimmer.stopShimmer()
+        super.onPause()
     }
 }

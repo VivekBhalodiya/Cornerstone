@@ -6,6 +6,9 @@
 
 package com.vivekbhalodiya.githubtrending.utils
 
+import android.view.View
+import android.view.View.VISIBLE
+import android.view.animation.AlphaAnimation
 import io.reactivex.Flowable
 import io.reactivex.Maybe
 import io.reactivex.Observable
@@ -42,4 +45,15 @@ fun <T> Flowable<T>.onBackground(): Flowable<T> {
  */
 fun String?.toNonEmptyString(): String {
     return if (this.isNullOrEmpty()) "-" else this
+}
+
+fun View.makeFadeVisible() {
+    this.animation = AlphaAnimation(0.0f, 1.0f).apply {
+        duration = 400
+        setAnimationListener(object : AnimationEndListener() {
+            override fun onAnimationEnded() {
+                this@makeFadeVisible.visibility = VISIBLE
+            }
+        })
+    }
 }

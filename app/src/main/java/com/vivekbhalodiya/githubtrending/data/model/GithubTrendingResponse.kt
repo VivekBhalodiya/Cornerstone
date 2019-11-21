@@ -9,7 +9,9 @@ package com.vivekbhalodiya.githubtrending.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import com.vivekbhalodiya.githubtrending.data.converters.BuiltByConverters
 
 /**
  * Created by Vivek Patel on 2019-11-19.
@@ -63,11 +65,11 @@ data class GithubTrendingResponse(
     @ColumnInfo(name = "currentPeriodStars")
     val currentPeriodStars: Int? = null,
 
+    /*@TypeConverters(BuiltByConverters::class)
+    val builtBy: ArrayList<BuiltBy>? = null,
+*/
     var expanded: Boolean = false
 
-    /* @SerializedName("builtBy")
-     @ColumnInfo(name = "builtBy")
-     val builtBy: List<BuiltBy> = listOf()*/
 ) {
     data class BuiltBy(
         @SerializedName("username")

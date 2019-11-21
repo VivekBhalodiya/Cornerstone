@@ -15,7 +15,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.vivekbhalodiya.githubtrending.data.model.GithubTrendingResponse
 import com.vivekbhalodiya.githubtrending.databinding.LayoutItemTrendingRepoBinding
+import com.vivekbhalodiya.githubtrending.utils.makeFadeVisible
 import com.vivekbhalodiya.githubtrending.utils.toNonEmptyString
+
 
 /**
  * Created by Vivek Patel on 2019-11-20.
@@ -28,17 +30,26 @@ class TrendingReposRVViewHolder(private val viewBinding: LayoutItemTrendingRepoB
             textviewAuthor.text = trendingRepo.author.toNonEmptyString()
             textviewRepoName.text = trendingRepo.name.toNonEmptyString()
             setNetworkImage(imageviewAvatar, trendingRepo.avatar, true)
+
+            //Expand the detail layout
             if (trendingRepo.expanded) {
-                setLanguageColor(imageviewLanguageColor,trendingRepo.languageColor)
-                textviewDescription.text = trendingRepo.description.toNonEmptyString()
-                textviewLanguage.text = trendingRepo.language.toNonEmptyString()
-                textviewStarsCount.text = trendingRepo.stars.toString().toNonEmptyString()
-                textviewForkCount.text = trendingRepo.forks.toString().toNonEmptyString()
-                expandedLayout.visibility = VISIBLE
+                expandDetailLayout(trendingRepo)
             } else {
                 expandedLayout.visibility = GONE
             }
         }
+    }
+
+    private fun LayoutItemTrendingRepoBinding.expandDetailLayout(trendingRepo: GithubTrendingResponse) {
+        expandedLayout.visibility = VISIBLE
+        setLanguageColor(imageviewLanguageColor, trendingRepo.languageColor)
+        textviewDescription.text = trendingRepo.description.toNonEmptyString()
+        textviewLanguage.text = trendingRepo.language.toNonEmptyString()
+        textviewStarsCount.text = trendingRepo.stars.toString().toNonEmptyString()
+        textviewForkCount.text = trendingRepo.forks.toString().toNonEmptyString()
+        //Make fade animation
+        textviewDescription.makeFadeVisible()
+        tablerowStats.makeFadeVisible()
     }
 
     private fun setNetworkImage(targetImageView: ImageView, url: String?, circleCrop: Boolean) {

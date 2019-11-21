@@ -67,12 +67,15 @@
           style="@style/Text.Description12sp"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:visibility="invisible"
           tools:text="long description" />
 
 
       <TableRow
+          android:id="@+id/tablerow_stats"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
+          android:visibility="invisible"
           android:layout_marginTop="@dimen/dimen_8dp">
 
         <ImageView
@@ -125,10 +128,6 @@
             tools:text="4,376" />
       </TableRow>
 
-      <!--<View
-          android:layout_width="match_parent"
-          android:layout_height="3dp"
-          android:background="@drawable/down_shadow"/>-->
     </LinearLayout>
   </LinearLayout>
 </layout>

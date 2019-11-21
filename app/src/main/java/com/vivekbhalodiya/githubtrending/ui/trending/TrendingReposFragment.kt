@@ -66,13 +66,9 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
         viewModel.trendingRepositoriesResult()
             .observe(viewLifecycleOwner, Observer { result ->
                 result?.let {
-                    if (it.isEmpty()) {
-                        showErrorState()
-                    } else {
-                        trendingReposRVAdapter.setData(it)
-                        stopShimmer()
-                        dismissSwipeRefresh()
-                    }
+                    trendingReposRVAdapter.setData(it)
+                    stopShimmer()
+                    dismissSwipeRefresh()
                 }
             })
     }

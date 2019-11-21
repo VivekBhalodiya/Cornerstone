@@ -36,24 +36,27 @@ class GithubTrendingRepository @Inject constructor(
     ): Observable<List<GithubTrendingResponse>> {
         var observablesFromApi: Observable<List<GithubTrendingResponse>>? = null
 
+        //Get Data from Api if network is available
         if (networkUtils.isConnected()) {
             observablesFromApi = getGithubTrendingReposFromApi()
         }
+
+        //Collect data from the Db
         val observableFromDb: Observable<List<GithubTrendingResponse>> =
             getGithubTrendingReposFromDb(orderBy, orderType)
 
         return when {
-            //If order by is NOT requested
+            //If order by is NOT requested, merge the data and return it.
             networkUtils.isConnected() && orderBy == TrendingReposOrderBy.DEFAULT-> Observable.concatArrayEager(
                 observablesFromApi,
                 observableFromDb
             )
-            //If order by is requested and isOnline, sort from database.
+            //If order by is requested and isOnline, sort from database and return it.
             networkUtils.isConnected() -> observableFromDb
             //Cache is expired and is NOT connected to internet, show error state.
             isCacheExpired() -> {
                 deleteGithubTrendingReposFromDb()
-                Observable.just<List<GithubTrendingResponse>>(emptyList())
+                Observable.error(Throwable("Cache expired."))
             }
             else -> observableFromDb
         }

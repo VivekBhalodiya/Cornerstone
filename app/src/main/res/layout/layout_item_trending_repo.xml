@@ -79,7 +79,8 @@
             android:id="@+id/imageview_language_color"
             android:layout_width="@dimen/dimen_16dp"
             android:layout_height="@dimen/dimen_16dp"
-            android:layout_gravity="center_vertical" />
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_solid_circle_gray_16dp"/>
 
         <TextView
             android:id="@+id/textview_language"

@@ -36,3 +36,10 @@ fun <T> Flowable<T>.onBackground(): Flowable<T> {
     return this.subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 }
+
+/**
+ * @return Not Available placeholder for empty or null string
+ */
+fun String?.toNonEmptyString(): String {
+    return if (this.isNullOrEmpty()) "-" else this
+}

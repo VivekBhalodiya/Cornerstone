@@ -6,6 +6,7 @@
 
 package com.vivekbhalodiya.githubtrending.ui.trending
 
+import android.graphics.Color
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.vivekbhalodiya.githubtrending.data.model.GithubTrendingResponse
 import com.vivekbhalodiya.githubtrending.databinding.LayoutItemTrendingRepoBinding
+import com.vivekbhalodiya.githubtrending.utils.toNonEmptyString
 
 /**
  * Created by Vivek Patel on 2019-11-20.
@@ -23,14 +25,15 @@ class TrendingReposRVViewHolder(private val viewBinding: LayoutItemTrendingRepoB
 
     fun bind(trendingRepo: GithubTrendingResponse) {
         with(viewBinding) {
-            textviewAuthor.text = trendingRepo.author
-            textviewRepoName.text = trendingRepo.name
+            textviewAuthor.text = trendingRepo.author.toNonEmptyString()
+            textviewRepoName.text = trendingRepo.name.toNonEmptyString()
             setNetworkImage(imageviewAvatar, trendingRepo.avatar, true)
             if (trendingRepo.expanded) {
-                textviewDescription.text = trendingRepo.description
-                textviewLanguage.text = trendingRepo.language
-                textviewStarsCount.text = trendingRepo.stars.toString()
-                textviewForkCount.text = trendingRepo.forks.toString()
+                setLanguageColor(imageviewLanguageColor,trendingRepo.languageColor)
+                textviewDescription.text = trendingRepo.description.toNonEmptyString()
+                textviewLanguage.text = trendingRepo.language.toNonEmptyString()
+                textviewStarsCount.text = trendingRepo.stars.toString().toNonEmptyString()
+                textviewForkCount.text = trendingRepo.forks.toString().toNonEmptyString()
                 expandedLayout.visibility = VISIBLE
             } else {
                 expandedLayout.visibility = GONE
@@ -49,6 +52,15 @@ class TrendingReposRVViewHolder(private val viewBinding: LayoutItemTrendingRepoB
             }
         } else {
             glide.into(targetImageView)
+        }
+    }
+
+    private fun setLanguageColor(
+        imageviewLanguageColor: ImageView,
+        languageColor: String?
+    ) {
+        languageColor?.let {
+            imageviewLanguageColor.setColorFilter(Color.parseColor(it))
         }
     }
 }

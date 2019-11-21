@@ -47,20 +47,30 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
         getGithubTrendingRepos()
 
         setupSwipeToRefresh()
+
+        observeErrors()
+    }
+
+    private fun observeErrors() {
+        viewModel.trendingRepositoriesError().observe(viewLifecycleOwner, Observer {
+            it?.let {
+                stopShimmer()
+                showErrorState()
+            }
+        })
     }
 
     private fun getGithubTrendingRepos() {
         getGithubTrendingReposOrderBy()
 
         viewModel.trendingRepositoriesResult()
-            .observe(this, Observer { result ->
+            .observe(viewLifecycleOwner, Observer { result ->
                 result?.let {
                     if (it.isEmpty()) {
                         showErrorState()
                     } else {
                         trendingReposRVAdapter.setData(it)
-                        binding.layoutShimmer.stopShimmer()
-                        binding.layoutShimmer.visibility = GONE
+                        stopShimmer()
                         dismissSwipeRefresh()
                     }
                 }
@@ -73,6 +83,24 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
             addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
             binding.recyclerviewTrendingRepos.adapter = trendingReposRVAdapter
             setHasFixedSize(true)
+        }
+    }
+
+    private fun getGithubTrendingReposOrderBy(orderBy: TrendingReposOrderBy = TrendingReposOrderBy.DEFAULT) {
+        when (orderBy) {
+            TrendingReposOrderBy.NAME -> {
+                viewModel.getGithubTrendingRepos(
+                    orderBy = TrendingReposOrderBy.NAME,
+                    orderType = OrderType.DESC.name
+                )
+            }
+            TrendingReposOrderBy.STARS -> {
+                viewModel.getGithubTrendingRepos(
+                    orderBy = TrendingReposOrderBy.STARS,
+                    orderType = OrderType.DESC.name
+                )
+            }
+            else -> viewModel.getGithubTrendingRepos()
         }
     }
 
@@ -96,22 +124,13 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
         )
     }
 
-    private fun getGithubTrendingReposOrderBy(orderBy: TrendingReposOrderBy = TrendingReposOrderBy.DEFAULT) {
-        when (orderBy) {
-            TrendingReposOrderBy.NAME -> {
-                viewModel.getGithubTrendingRepos(
-                    orderBy = TrendingReposOrderBy.NAME,
-                    orderType = OrderType.DESC.name
-                )
-            }
-            TrendingReposOrderBy.STARS -> {
-                viewModel.getGithubTrendingRepos(
-                    orderBy = TrendingReposOrderBy.STARS,
-                    orderType = OrderType.DESC.name
-                )
-            }
-            else -> viewModel.getGithubTrendingRepos()
-        }
+    private fun stopShimmer() {
+        binding.layoutShimmer.stopShimmer()
+        binding.layoutShimmer.visibility = GONE
+    }
+
+    private fun startShimmer() {
+        binding.layoutShimmer.startShimmer()
     }
 
     override fun onCreateOptionsMenu(
@@ -137,12 +156,12 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
     }
 
     override fun onResume() {
-        binding.layoutShimmer.startShimmer()
+        startShimmer()
         super.onResume()
     }
 
     override fun onPause() {
-        binding.layoutShimmer.stopShimmer()
+        stopShimmer()
         super.onPause()
     }
 }

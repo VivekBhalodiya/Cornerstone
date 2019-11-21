@@ -34,12 +34,14 @@
 
         <TextView
             android:id="@+id/textview_author"
+            style="@style/Text.Regular12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="google" />
 
         <TextView
             android:id="@+id/textview_repo_name"
+            style="@style/Text.Medium15sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_6dp"
@@ -62,6 +64,7 @@
 
       <TextView
           android:id="@+id/textview_description"
+          style="@style/Text.Description12sp"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           tools:text="long description" />
@@ -80,6 +83,7 @@
 
         <TextView
             android:id="@+id/textview_language"
+            style="@style/Text.Regular12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_4dp"
@@ -96,6 +100,7 @@
 
         <TextView
             android:id="@+id/textview_stars_count"
+            style="@style/Text.Regular12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_4dp"
@@ -112,6 +117,7 @@
 
         <TextView
             android:id="@+id/textview_fork_count"
+            style="@style/Text.Regular12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dimen_4dp"

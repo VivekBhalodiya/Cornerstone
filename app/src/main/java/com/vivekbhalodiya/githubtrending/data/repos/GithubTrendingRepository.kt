@@ -43,10 +43,14 @@ class GithubTrendingRepository @Inject constructor(
             getGithubTrendingReposFromDb(orderBy, orderType)
 
         return when {
-            networkUtils.isConnected() -> Observable.concatArrayEager(
+            //If order by is NOT requested
+            networkUtils.isConnected() && orderBy == TrendingReposOrderBy.DEFAULT-> Observable.concatArrayEager(
                 observablesFromApi,
                 observableFromDb
             )
+            //If order by is requested and isOnline, sort from database.
+            networkUtils.isConnected() -> observableFromDb
+            //Cache is expired and is NOT connected to internet, show error state.
             isCacheExpired() -> {
                 deleteGithubTrendingReposFromDb()
                 Observable.just<List<GithubTrendingResponse>>(emptyList())

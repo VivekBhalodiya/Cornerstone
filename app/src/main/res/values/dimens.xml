@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Created by Vivek Bhalodiya on 20/11/19 12:28 AM
   ~ Copyright (c) 2019 . All rights reserved.
   ~ Last modified 20/11/19 12:28 AM
@@ -20,4 +19,5 @@
     <dimen name="dimen_1dp">1dp</dimen>
     <dimen name="dimen_24dp">24dp</dimen>
     <dimen name="dimen_48dp">48dp</dimen>
+    <dimen name="dimen_14sp">14sp</dimen>
 </resources>

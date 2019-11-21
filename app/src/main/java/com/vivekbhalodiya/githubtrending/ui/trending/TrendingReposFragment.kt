@@ -42,9 +42,9 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        getGithubTrendingRepos()
-
         setupRecyclerView()
+
+        getGithubTrendingRepos()
 
         setupSwipeToRefresh()
     }

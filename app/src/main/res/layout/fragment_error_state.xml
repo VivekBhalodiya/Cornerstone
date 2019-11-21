@@ -18,6 +18,7 @@
           android:src="@drawable/nointernet_connection" />
 
       <TextView
+          style="@style/Text.Bold18sp"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/dimen_24dp"
@@ -25,6 +26,7 @@
           android:text="@string/something_went_wrong" />
 
       <TextView
+          style="@style/Text.Regular15sp"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/dimen_8dp"
@@ -32,10 +34,9 @@
           android:text="@string/an_alien_probably_blocking_your_signal" />
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_retry"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_48dp"
+        style="@style/Base.Button.Outlined"
         android:layout_gravity="bottom"
         android:layout_margin="@dimen/dimen_16dp"
         android:text="@string/retry" />

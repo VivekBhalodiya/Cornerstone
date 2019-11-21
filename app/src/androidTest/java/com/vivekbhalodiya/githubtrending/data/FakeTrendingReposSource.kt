@@ -17,7 +17,7 @@ class FakeTrendingReposSource {
         fun getFakeTrendingRepos(size: Int): List<GithubTrendingResponse> {
             val trendingReposList = mutableListOf<GithubTrendingResponse>()
 
-            for (i in 0..size) {
+            for (i in 0 until size) {
                 trendingReposList.add(
                     GithubTrendingResponse(
                         id = Random.nextLong(),

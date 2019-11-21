@@ -7,10 +7,19 @@
 package com.vivekbhalodiya.githubtrending
 
 import android.app.Application
+import com.vivekbhalodiya.githubtrending.di.component.TestAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
 /**
  * Created by Vivek Patel on 2019-11-21.
  */
-class MyTestApplication: Application() {
+class MyTestApplication : Application() {
+    /*override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        return DaggerTestAppComponent.factory().create(this)
+    }
 
+    private lateinit var component: TestAppComponent
+
+    fun provideComponent() = component*/
 }

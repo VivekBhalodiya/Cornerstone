@@ -9,6 +9,7 @@ package com.vivekbhalodiya.githubtrending
 import android.app.Application
 import android.content.Context
 import androidx.test.runner.AndroidJUnitRunner
+import org.junit.runners.model.InitializationError
 
 /**
  * Created by Vivek Patel on 2019-11-21.
@@ -17,7 +18,8 @@ class MyTestRunner: AndroidJUnitRunner() {
     @Throws(
         InstantiationException::class,
         IllegalAccessException::class,
-        ClassNotFoundException::class
+        ClassNotFoundException::class,
+        InitializationError::class
     )
     override fun newApplication(classLoader: ClassLoader, className: String, context: Context): Application {
         // replace Application class with mock one

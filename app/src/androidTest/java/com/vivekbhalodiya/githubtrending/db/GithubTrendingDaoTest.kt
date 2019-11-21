@@ -26,8 +26,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class GithubTrendingDaoTest {
 
-    @Rule
-    var instantTaskExecutorRule = InstantTaskExecutorRule()
+    @get:Rule val instantTaskExecutorRule = InstantTaskExecutorRule()
 
     private var mDatabase: Database? = null
 
@@ -73,6 +72,6 @@ class GithubTrendingDaoTest {
         val trendingReposList = FakeTrendingReposSource.getFakeTrendingRepos(5)
         trendingReposList.forEach { note -> gihubTrendingDao!!.insertGithubTrendingRepos(note) }
         gihubTrendingDao!!.deleteAll()
-        assertNull(gihubTrendingDao!!.getGithubTrendingRepos())
+        assertTrue(gihubTrendingDao!!.getGithubTrendingRepos().blockingFirst().isEmpty())
     }
 }

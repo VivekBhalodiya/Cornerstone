@@ -24,6 +24,10 @@ import com.vivekbhalodiya.githubtrending.ui.error.ErrorStateFragment
 import com.vivekbhalodiya.githubtrending.utils.OrderType
 import com.vivekbhalodiya.githubtrending.utils.TrendingReposOrderBy
 
+/**
+ * This Fragment displays the list of Github's Trending repositories which is being
+ * supplied by the TrendingReposViewModel
+ */
 class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, TrendingReposViewModel>() {
     private val trendingReposRVAdapter: TrendingReposRVAdapter by lazy { TrendingReposRVAdapter() }
 
@@ -51,6 +55,11 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
         observeErrors()
     }
 
+    /**
+     * If any errors occurs while fetching the data from the network or database,
+     * this function will replace this fragment with ErrorStateFragment
+     */
+
     private fun observeErrors() {
         viewModel.trendingRepositoriesError().observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -60,6 +69,9 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
         })
     }
 
+    /**
+     * This function talks to the TrendingReposViewModel and fetches the TrendingRepos list.
+     */
     private fun getGithubTrendingRepos() {
         getGithubTrendingReposOrderBy()
 
@@ -73,6 +85,10 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
             })
     }
 
+    /**
+     * This functions initialize the recyclerView and adds a Divider to every item.
+     */
+
     private fun setupRecyclerView() {
         with(binding.recyclerviewTrendingRepos) {
             (itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
@@ -82,6 +98,9 @@ class TrendingReposFragment : BaseFragment<FragmentTrendingReposBinding, Trendin
         }
     }
 
+    /**
+     * This function talks to TrendingReposViewModel to query the list based on the OrderBy
+     */
     private fun getGithubTrendingReposOrderBy(orderBy: TrendingReposOrderBy = TrendingReposOrderBy.DEFAULT) {
         when (orderBy) {
             TrendingReposOrderBy.NAME -> {

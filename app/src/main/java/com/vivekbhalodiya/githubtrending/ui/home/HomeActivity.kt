@@ -13,6 +13,12 @@ import com.vivekbhalodiya.githubtrending.ui.base.BaseActivity
 import com.vivekbhalodiya.githubtrending.ui.base.navigator.ActivityNavigator
 import com.vivekbhalodiya.githubtrending.ui.trending.TrendingReposFragment
 
+/**
+ * This is the main launcher activity
+ *
+ * This activity starts TrendingReposFragments as soon as Toolbar is setup.
+ */
+
 class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
     override fun getViewModelClass() = HomeViewModel::class.java
 
@@ -23,6 +29,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
 
         setupToolbar()
 
+        //Navigate to TrendingReposFragment
         ActivityNavigator.replaceFragment(
             R.id.fragment_container_home,
             TrendingReposFragment(),
@@ -30,6 +37,9 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>() {
         )
     }
 
+    /**
+     *  This functions sets up a Custom toolbar.
+     */
     private fun setupToolbar() {
         setSupportActionBar(binding.layoutToolbarWhite.toolbarWhite)
         supportActionBar?.title = ""

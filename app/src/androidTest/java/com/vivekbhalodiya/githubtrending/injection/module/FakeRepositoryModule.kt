@@ -4,13 +4,11 @@
  * Last modified 19/11/19 10:23 PM
  */
 
-package com.vivekbhalodiya.githubtrending.di.module
+package com.vivekbhalodiya.githubtrending.injection.module
 
 import com.vivekbhalodiya.githubtrending.data.repos.GithubTrendingRepository
 import com.vivekbhalodiya.githubtrending.data.source.local.GithubTrendingDao
 import com.vivekbhalodiya.githubtrending.data.source.remote.ApiInterface
-import com.vivekbhalodiya.githubtrending.injection.module.AppModule
-import com.vivekbhalodiya.githubtrending.injection.module.NetworkModule
 import com.vivekbhalodiya.githubtrending.utils.NetworkUtils
 import com.vivekbhalodiya.githubtrending.utils.PrefsUtils
 import dagger.Module

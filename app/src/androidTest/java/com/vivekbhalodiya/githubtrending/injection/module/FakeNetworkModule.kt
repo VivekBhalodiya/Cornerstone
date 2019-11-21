@@ -4,7 +4,7 @@
  * Last modified 20/11/19 5:14 PM
  */
 
-package com.vivekbhalodiya.githubtrending.di.module
+package com.vivekbhalodiya.githubtrending.injection.module
 
 import android.content.Context
 import android.content.IntentFilter

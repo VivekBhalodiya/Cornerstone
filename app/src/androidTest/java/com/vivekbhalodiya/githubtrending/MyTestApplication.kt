@@ -7,9 +7,6 @@
 package com.vivekbhalodiya.githubtrending
 
 import android.app.Application
-import com.vivekbhalodiya.githubtrending.di.component.TestAppComponent
-import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
 
 /**
  * Created by Vivek Patel on 2019-11-21.

@@ -4,12 +4,12 @@
  * Last modified 21/11/19 7:10 PM
  */
 
-package com.vivekbhalodiya.githubtrending.di.component
+package com.vivekbhalodiya.githubtrending.injection.component
 
 import com.vivekbhalodiya.githubtrending.GithubTrendingApp
-import com.vivekbhalodiya.githubtrending.di.module.FakeAppModule
-import com.vivekbhalodiya.githubtrending.di.module.FakeNetworkModule
-import com.vivekbhalodiya.githubtrending.di.module.FakeRepositoryModule
+import com.vivekbhalodiya.githubtrending.injection.module.FakeAppModule
+import com.vivekbhalodiya.githubtrending.injection.module.FakeNetworkModule
+import com.vivekbhalodiya.githubtrending.injection.module.FakeRepositoryModule
 import com.vivekbhalodiya.githubtrending.injection.module.ActivityBindingModule
 import com.vivekbhalodiya.githubtrending.injection.module.ViewModelFactoryModule
 import dagger.Component

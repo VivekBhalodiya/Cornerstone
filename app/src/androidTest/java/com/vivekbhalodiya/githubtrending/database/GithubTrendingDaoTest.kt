@@ -4,7 +4,7 @@
  * Last modified 21/11/19 6:48 PM
  */
 
-package com.vivekbhalodiya.githubtrending.db
+package com.vivekbhalodiya.githubtrending.database
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room

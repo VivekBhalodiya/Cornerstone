@@ -6,12 +6,9 @@
 
 package com.vivekbhalodiya.githubtrending.injection.component
 
-import com.vivekbhalodiya.githubtrending.GithubTrendingApp
-import com.vivekbhalodiya.githubtrending.injection.module.FakeAppModule
-import com.vivekbhalodiya.githubtrending.injection.module.FakeNetworkModule
-import com.vivekbhalodiya.githubtrending.injection.module.FakeRepositoryModule
-import com.vivekbhalodiya.githubtrending.injection.module.ActivityBindingModule
-import com.vivekbhalodiya.githubtrending.injection.module.ViewModelFactoryModule
+import com.vivekbhalodiya.githubtrending.MyTestApplication
+import com.vivekbhalodiya.githubtrending.injection.module.*
+import com.vivekbhalodiya.githubtrending.ui.HomeActivityTest
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
@@ -19,17 +16,12 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [
-        FakeAppModule::class,
-        AndroidSupportInjectionModule::class,
-        ViewModelFactoryModule::class,
-        ActivityBindingModule::class,
-        FakeNetworkModule::class,
-        FakeRepositoryModule::class
-    ]
+    modules = [AndroidSupportInjectionModule::class, FakeAppModule::class, ViewModelFactoryModule::class,
+        ActivityBindingModule::class, FakeNetworkModule::class, FakeRepositoryModule::class, FragmentBindingModule::class]
 )
-interface TestAppComponent : AndroidInjector<GithubTrendingApp> {
+interface TestAppComponent : AndroidInjector<MyTestApplication> {
+    fun inject(homeActivityTest: HomeActivityTest)
 
     @Component.Factory
-    interface Factory : AndroidInjector.Factory<GithubTrendingApp>
+    interface Factory : AndroidInjector.Factory<MyTestApplication>
 }

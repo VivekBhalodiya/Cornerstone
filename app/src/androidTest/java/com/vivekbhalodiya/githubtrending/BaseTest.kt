@@ -15,7 +15,7 @@ import org.junit.runner.RunWith
 abstract class BaseTest {
     lateinit var application: MyTestApplication
 
-   // @Before
+    @Before
     fun setup() {
         application = InstrumentationRegistry.getInstrumentation()
             .targetContext.applicationContext as MyTestApplication

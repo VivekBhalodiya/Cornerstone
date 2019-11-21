@@ -19,7 +19,7 @@ import javax.inject.Singleton
  * Created by Vivek Patel on 2019-11-19.
  */
 
-@Module(includes = [NetworkModule::class, AppModule::class])
+@Module(includes = [FakeNetworkModule::class, FakeAppModule::class])
 class FakeRepositoryModule {
 
     @Provides

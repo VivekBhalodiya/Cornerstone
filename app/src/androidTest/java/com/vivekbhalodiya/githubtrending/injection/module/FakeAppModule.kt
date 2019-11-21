@@ -11,7 +11,7 @@ import android.preference.PreferenceManager
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.vivekbhalodiya.githubtrending.GithubTrendingApp
+import com.vivekbhalodiya.githubtrending.MyTestApplication
 import com.vivekbhalodiya.githubtrending.data.source.local.Database
 import com.vivekbhalodiya.githubtrending.data.source.local.GithubTrendingDao
 import com.vivekbhalodiya.githubtrending.injection.qualifiers.ApplicationContext
@@ -39,7 +39,7 @@ class FakeAppModule {
     @Provides
     @Singleton
     @ApplicationContext
-    fun provideAppContext(application: GithubTrendingApp): Context {
+    fun provideAppContext(application: MyTestApplication): Context {
         return application
     }
 

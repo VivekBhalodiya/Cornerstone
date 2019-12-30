@@ -1,72 +1,61 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="android:statusBarColor" tools:targetApi="lollipop">?android:colorBackground
-        </item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
+  <!-- Base application theme. -->
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    <item name="android:statusBarColor" tools:targetApi="lollipop">?android:colorBackground
+    </item>
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
 
-    <!-- Base Style -->
+  <!-- Base Style -->
 
-    <style name="Base.Text.RegularStyle" parent="TextAppearance.AppCompat">
-        <item name="android:fontFamily">@font/roboto_regular</item>
-        <item name="android:textSize">@dimen/dimen_14sp</item>
-    </style>
+  <style name="Base.Text.RegularStyle" parent="TextAppearance.AppCompat">
+    <item name="android:fontFamily">@font/roboto_regular</item>
+    <item name="android:textSize">@dimen/dimen_14sp</item>
+  </style>
 
-    <style name="Base.Text.MediumStyle" parent="TextAppearance.AppCompat">
-        <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:textSize">@dimen/dimen_14sp</item>
-    </style>
+  <style name="Base.Text.MediumStyle" parent="TextAppearance.AppCompat">
+    <item name="android:fontFamily">@font/roboto_medium</item>
+    <item name="android:textSize">@dimen/dimen_14sp</item>
+  </style>
 
-    <style name="Base.Text.BoldStyle" parent="TextAppearance.AppCompat">
-        <item name="android:fontFamily">@font/roboto_bold</item>
-        <item name="android:textSize">@dimen/dimen_14sp</item>
-    </style>
-    
-    <style name="Base.Button.Outlined" parent="Widget.AppCompat.Button">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/dimen_48dp</item>
-        <item name="android:background">@drawable/btn_outline</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:fontFamily">@font/roboto_medium</item>
-        <item name="android:textColor">@color/colorAccent</item>
-    </style>
+  <style name="Base.Text.BoldStyle" parent="TextAppearance.AppCompat">
+    <item name="android:fontFamily">@font/roboto_bold</item>
+    <item name="android:textSize">@dimen/dimen_14sp</item>
+  </style>
 
-    <!-- Custom Text Style -->
+  <style name="Base.Button.Outlined" parent="Widget.AppCompat.Button">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">@dimen/dimen_48dp</item>
+    <item name="android:background">@drawable/btn_outline</item>
+    <item name="android:textAllCaps">true</item>
+    <item name="android:textSize">15sp</item>
+    <item name="android:fontFamily">@font/roboto_medium</item>
+    <item name="android:textColor">@color/colorAccent</item>
+  </style>
 
-    <style name="Text.Regular12sp" parent="Base.Text.RegularStyle">
-        <item name="android:textSize">12sp</item>
-        <item name="android:textColor">@color/colorPrimary</item>
-    </style>
+  <!-- Custom Text Style -->
 
-    <style name="Text.Regular15sp" parent="Base.Text.RegularStyle">
-        <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/colorGray2</item>
-    </style>
+  <style name="Text.Regular12sp" parent="Base.Text.RegularStyle">
+    <item name="android:textSize">12sp</item>
+    <item name="android:textColor">@color/colorPrimary</item>
+  </style>
 
-    <style name="Text.Medium15sp" parent="Base.Text.MediumStyle">
-        <item name="android:textSize">15sp</item>
-        <item name="android:textColor">@color/colorPrimary</item>
-    </style>
+  <style name="Text.Medium15sp" parent="Base.Text.MediumStyle">
+    <item name="android:textSize">15sp</item>
+    <item name="android:textColor">@color/colorPrimary</item>
+  </style>
 
-    <style name="Text.Medium21sp" parent="Base.Text.MediumStyle">
-        <item name="android:textSize">@dimen/dimen_21sp</item>
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-    </style>
+  <style name="Text.Medium21sp" parent="Base.Text.MediumStyle">
+    <item name="android:textSize">@dimen/dimen_21sp</item>
+    <item name="android:textColor">@color/colorPrimaryDark</item>
+  </style>
 
-    <style name="Text.Bold18sp" parent="Base.Text.BoldStyle">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/colorGray1</item>
-
-    </style>
-
-    <style name="Text.Description12sp" parent="TextAppearance.AppCompat">
-        <item name="android:fontFamily">@font/ping_fang_sc_regular</item>
-        <item name="android:textSize">12sp</item>
-    </style>
+  <style name="Text.Description12sp" parent="TextAppearance.AppCompat">
+    <item name="android:fontFamily">@font/ping_fang_sc_regular</item>
+    <item name="android:textSize">12sp</item>
+  </style>
 </resources>

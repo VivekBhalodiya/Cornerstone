@@ -18,7 +18,6 @@
           android:src="@drawable/nointernet_connection" />
 
       <TextView
-          style="@style/Text.Bold18sp"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/dimen_24dp"
@@ -26,7 +25,6 @@
           android:text="@string/something_went_wrong" />
 
       <TextView
-          style="@style/Text.Regular15sp"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_marginTop="@dimen/dimen_8dp"

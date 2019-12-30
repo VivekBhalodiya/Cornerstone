@@ -7,100 +7,96 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion "29.0.2"
-    dataBinding {
-        enabled = true
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion "29.0.2"
+  dataBinding {
+    enabled = true
+  }
+  defaultConfig {
+    applicationId "com.vivekbhalodiya.cornerstone"
+    minSdkVersion rootProject.ext.minSDKVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "com.vivekbhalodiya.cornerstone.MyTestRunner"
+  }
+  buildTypes {
+    debug {
+      buildConfigField 'String', 'URL', '"https://yourbaseurl/"'
     }
-    defaultConfig {
-        applicationId "com.vivekbhalodiya.githubtrending"
-        minSdkVersion rootProject.ext.minSDKVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "com.vivekbhalodiya.githubtrending.MyTestRunner"
+    release {
+      buildConfigField 'String', 'URL', '"https://yourbaseurl/"'
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
     }
-    buildTypes {
-        debug {
-            buildConfigField 'String', 'URL', '"https://github-trending-api.now.sh/"'
-        }
-        release {
-            buildConfigField 'String', 'URL', '"https://github-trending-api.now.sh/"'
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
-    }
+  }
+  compileOptions {
+    sourceCompatibility 1.8
+    targetCompatibility 1.8
+  }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:${rootProject.ext.appCompatVersion}"
-    implementation "androidx.core:core-ktx:${rootProject.ext.coreKTXVersion}"
-    implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintLayoutVersion}"
-    // For control over item selection of both touch and mouse driven selection
-    implementation "androidx.recyclerview:recyclerview-selection:${rootProject.ext.recyclerviewVersion}"
-    implementation "androidx.recyclerview:recyclerview:${rootProject.ext.recyclerviewVersion}"
-    implementation "androidx.cardview:cardview:${rootProject.ext.recyclerviewVersion}"
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  implementation "androidx.appcompat:appcompat:${rootProject.ext.appCompatVersion}"
+  implementation "androidx.core:core-ktx:${rootProject.ext.coreKTXVersion}"
+  implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintLayoutVersion}"
+  implementation "androidx.recyclerview:recyclerview:${rootProject.ext.recyclerviewVersion}"
+  implementation "androidx.cardview:cardview:${rootProject.ext.recyclerviewVersion}"
 
-    //Dagger2
-    implementation "com.google.dagger:dagger-android:${rootProject.ext.dagger2Version}"
-    implementation "com.google.dagger:dagger-android-support:${rootProject.ext.dagger2Version}"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    kapt "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2Version}"
-    kapt "com.google.dagger:dagger-android-processor:${rootProject.ext.dagger2Version}"
-    kaptAndroidTest "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2Version}"
-    kaptTest "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2Version}"
+  //Dagger2
+  implementation "com.google.dagger:dagger-android:${rootProject.ext.dagger2Version}"
+  implementation "com.google.dagger:dagger-android-support:${rootProject.ext.dagger2Version}"
+  implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+  kapt "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2Version}"
+  kapt "com.google.dagger:dagger-android-processor:${rootProject.ext.dagger2Version}"
+  kaptAndroidTest "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2Version}"
+  kaptTest "com.google.dagger:dagger-compiler:${rootProject.ext.dagger2Version}"
 
-    //Room
-    implementation "android.arch.persistence.room:runtime:${rootProject.ext.archRoomVersion}"
-    implementation "android.arch.persistence.room:rxjava2:${rootProject.ext.archRoomVersion}"
-    kapt "android.arch.persistence.room:compiler:${rootProject.ext.archRoomVersion}"
+  //Room
+  implementation "android.arch.persistence.room:runtime:${rootProject.ext.archRoomVersion}"
+  implementation "android.arch.persistence.room:rxjava2:${rootProject.ext.archRoomVersion}"
+  kapt "android.arch.persistence.room:compiler:${rootProject.ext.archRoomVersion}"
 
-    //Lifecycle
-    implementation "androidx.lifecycle:lifecycle-extensions:${rootProject.ext.archLifecycleVersion}"
-    kapt "androidx.lifecycle:lifecycle-compiler:${rootProject.ext.archLifecycleVersion}"
+  //Lifecycle
+  implementation "androidx.lifecycle:lifecycle-extensions:${rootProject.ext.archLifecycleVersion}"
+  kapt "androidx.lifecycle:lifecycle-compiler:${rootProject.ext.archLifecycleVersion}"
 
-    //RxJava 2 LiveData
-    implementation "androidx.lifecycle:lifecycle-reactivestreams:${rootProject.ext.archLifecycleVersion}"
+  //RxJava 2 LiveData
+  implementation "androidx.lifecycle:lifecycle-reactivestreams:${rootProject.ext.archLifecycleVersion}"
 
-    //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.rxJavaAdapterVersion}"
-    implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitGsonFactoryVersion}"
+  //Retrofit
+  implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+  implementation "com.squareup.retrofit2:adapter-rxjava2:${rootProject.ext.rxJavaAdapterVersion}"
+  implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitGsonFactoryVersion}"
 
-    //RxJava RxAndroid
-    implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJava2Version}"
-    implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
+  //RxJava RxAndroid
+  implementation "io.reactivex.rxjava2:rxjava:${rootProject.ext.rxJava2Version}"
+  implementation "io.reactivex.rxjava2:rxandroid:${rootProject.ext.rxAndroidVersion}"
 
-    //Glide
-    implementation "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
+  //Glide
+  implementation "com.github.bumptech.glide:glide:${rootProject.ext.glideVersion}"
 
-    //Timber
-    implementation "com.jakewharton.timber:timber:${rootProject.ext.timberVersion}"
+  //Timber
+  implementation "com.jakewharton.timber:timber:${rootProject.ext.timberVersion}"
 
-    //Facebook Shimmer
-    implementation "com.facebook.shimmer:shimmer:${rootProject.ext.shimmerVersion}"
 
-    //Test
-    testImplementation "junit:junit:${rootProject.ext.junitVersion}"
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    androidTestImplementation 'org.mockito:mockito-core:3.1.0'
+  //Test
+  testImplementation "junit:junit:${rootProject.ext.junitVersion}"
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+  androidTestImplementation 'org.mockito:mockito-core:3.1.0'
 
-    // Core library
-    androidTestImplementation 'androidx.test:core:1.2.0'
+  // Core library
+  androidTestImplementation 'androidx.test:core:1.2.0'
 
-    // AndroidJUnitRunner and JUnit Rules
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test:rules:1.2.0'
+  // AndroidJUnitRunner and JUnit Rules
+  androidTestImplementation 'androidx.test:runner:1.2.0'
+  androidTestImplementation 'androidx.test:rules:1.2.0'
 
-    // Assertions
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.ext:truth:1.2.0'
-    androidTestImplementation 'com.google.truth:truth:0.42'
-    androidTestImplementation "android.arch.core:core-testing:1.1.1"
+  // Assertions
+  androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+  androidTestImplementation 'androidx.test.ext:truth:1.2.0'
+  androidTestImplementation 'com.google.truth:truth:0.42'
+  androidTestImplementation "android.arch.core:core-testing:1.1.1"
 }

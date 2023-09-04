@@ -1,7 +1,7 @@
 /*
  * Created by Vivek Bhalodiya on 19/11/19 4:30 PM
  * Copyright (c) 2019 . All rights reserved.
- * Last modified 19/11/19 4:23 PM
+ * Last modified 19/11/19 4:23 PM.
  */
 
 package com.vivekbhalodiya.cornerstone.data.model
